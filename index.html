@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Perfumes originales de diseñador y árabes en Tucumán. Decants desde 5ml. Envíos por Uber Moto. Compra fácil por WhatsApp." />
+  <title>AURА PARFUMS — Perfumes Originales en Tucumán</title>
+
+  <!-- Google Fonts: Cormorant Garamond (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER / NAV
+  ============================================================ -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#inicio" class="logo">
+        <span class="logo__icon">◈</span>
+        <span class="logo__name">AURA <em>Parfums</em></span>
+      </a>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#inicio" class="nav__link">Inicio</a></li>
+          <li><a href="#catalogo" class="nav__link">Catálogo</a></li>
+          <li><a href="#decants" class="nav__link">¿Qué es un Decant?</a></li>
+          <li><a href="#como-comprar" class="nav__link">Cómo Comprar</a></li>
+          <li><a href="#contacto" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="inicio">
+    <!-- Decorative grain overlay -->
+    <div class="hero__grain"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Tucumán · Perfumería de Autor</p>
+      <h1 class="hero__title">
+        Perfumes originales<br /><em>sin pagar de más</em>
+      </h1>
+      <p class="hero__subtitle">
+        Diseñador &amp; árabes. Botellas completas y decants desde 5 ml.<br />
+        Envíos rápidos en Tucumán por Uber Moto.
+      </p>
+      <div class="hero__actions">
+        <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20conocer%20el%20cat%C3%A1logo%20de%20perfumes%20disponibles%20%F0%9F%8C%B9" target="_blank" class="btn btn--primary">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.874L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.851 0-3.584-.504-5.073-1.383l-.361-.214-3.761.981.998-3.648-.236-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Comprar por WhatsApp
+        </a>
+        <a href="#catalogo" class="btn btn--ghost">Ver Catálogo</a>
+      </div>
+    </div>
+
+    <!-- Abstract decorative element -->
+    <div class="hero__deco" aria-hidden="true">
+      <div class="hero__deco-ring hero__deco-ring--1"></div>
+      <div class="hero__deco-ring hero__deco-ring--2"></div>
+      <div class="hero__deco-ring hero__deco-ring--3"></div>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="hero__badges">
+      <div class="badge">
+        <span class="badge__icon">✦</span>
+        <span>100% Originales</span>
+      </div>
+      <div class="badge">
+        <span class="badge__icon">✦</span>
+        <span>Envío por Uber Moto</span>
+      </div>
+      <div class="badge">
+        <span class="badge__icon">✦</span>
+        <span>Pago al recibir</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CATÁLOGO
+  ============================================================ -->
+  <section class="section catalog" id="catalogo">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Selección exclusiva</p>
+        <h2 class="section__title">Catálogo de Perfumes</h2>
+        <p class="section__sub">Cada fragancia es 100% original. Consultá disponibilidad y stock por WhatsApp.</p>
+      </div>
+
+      <!-- Filtros -->
+      <div class="catalog__filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="designer">Diseñador</button>
+        <button class="filter-btn" data-filter="arabic">Árabes</button>
+      </div>
+
+      <!-- Grid de productos -->
+      <div class="catalog__grid" id="catalogGrid">
+
+        <!-- Producto 1 -->
+        <article class="product-card" data-category="designer">
+          <div class="product-card__badge">Diseñador</div>
+          <div class="product-card__visual">
+            <div class="product-card__bottle product-card__bottle--1" aria-hidden="true">
+              <div class="bottle-shape">
+                <div class="bottle-cap"></div>
+                <div class="bottle-body">
+                  <div class="bottle-label">BL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Bleu de Chanel</h3>
+            <p class="product-card__brand">Chanel</p>
+            <div class="product-card__prices">
+              <div class="price-row">
+                <span class="price-label">Botella 100ml</span>
+                <span class="price-value">$58.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 10ml</span>
+                <span class="price-value">$7.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 5ml</span>
+                <span class="price-value">$4.500</span>
+              </div>
+            </div>
+            <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20consultar%20por%20*Bleu%20de%20Chanel*%20%F0%9F%8C%B9" target="_blank" class="btn btn--card">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Producto 2 -->
+        <article class="product-card" data-category="designer">
+          <div class="product-card__badge">Diseñador</div>
+          <div class="product-card__visual">
+            <div class="product-card__bottle product-card__bottle--2" aria-hidden="true">
+              <div class="bottle-shape">
+                <div class="bottle-cap"></div>
+                <div class="bottle-body">
+                  <div class="bottle-label">SD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Sauvage EDP</h3>
+            <p class="product-card__brand">Dior</p>
+            <div class="product-card__prices">
+              <div class="price-row">
+                <span class="price-label">Botella 100ml</span>
+                <span class="price-value">$62.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 10ml</span>
+                <span class="price-value">$7.500</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 5ml</span>
+                <span class="price-value">$4.800</span>
+              </div>
+            </div>
+            <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20consultar%20por%20*Sauvage%20EDP%20de%20Dior*%20%F0%9F%8C%B9" target="_blank" class="btn btn--card">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Producto 3 -->
+        <article class="product-card" data-category="designer">
+          <div class="product-card__badge">Diseñador</div>
+          <div class="product-card__visual">
+            <div class="product-card__bottle product-card__bottle--3" aria-hidden="true">
+              <div class="bottle-shape">
+                <div class="bottle-cap"></div>
+                <div class="bottle-body">
+                  <div class="bottle-label">YSL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Y EDP</h3>
+            <p class="product-card__brand">Yves Saint Laurent</p>
+            <div class="product-card__prices">
+              <div class="price-row">
+                <span class="price-label">Botella 100ml</span>
+                <span class="price-value">$55.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 10ml</span>
+                <span class="price-value">$6.500</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 5ml</span>
+                <span class="price-value">$4.200</span>
+              </div>
+            </div>
+            <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20consultar%20por%20*Y%20EDP%20de%20YSL*%20%F0%9F%8C%B9" target="_blank" class="btn btn--card">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Producto 4 -->
+        <article class="product-card" data-category="arabic">
+          <div class="product-card__badge product-card__badge--arabic">Árabe</div>
+          <div class="product-card__visual">
+            <div class="product-card__bottle product-card__bottle--4" aria-hidden="true">
+              <div class="bottle-shape bottle-shape--arabic">
+                <div class="bottle-cap bottle-cap--arabic"></div>
+                <div class="bottle-body bottle-body--arabic">
+                  <div class="bottle-label">OD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Oud for Glory</h3>
+            <p class="product-card__brand">Lattafa</p>
+            <div class="product-card__prices">
+              <div class="price-row">
+                <span class="price-label">Botella 100ml</span>
+                <span class="price-value">$38.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 10ml</span>
+                <span class="price-value">$5.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 5ml</span>
+                <span class="price-value">$3.200</span>
+              </div>
+            </div>
+            <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20consultar%20por%20*Oud%20for%20Glory%20de%20Lattafa*%20%F0%9F%8C%B9" target="_blank" class="btn btn--card">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Producto 5 -->
+        <article class="product-card" data-category="arabic">
+          <div class="product-card__badge product-card__badge--arabic">Árabe</div>
+          <div class="product-card__visual">
+            <div class="product-card__bottle product-card__bottle--5" aria-hidden="true">
+              <div class="bottle-shape bottle-shape--arabic">
+                <div class="bottle-cap bottle-cap--arabic"></div>
+                <div class="bottle-body bottle-body--arabic">
+                  <div class="bottle-label">RS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Raghba</h3>
+            <p class="product-card__brand">Lattafa</p>
+            <div class="product-card__prices">
+              <div class="price-row">
+                <span class="price-label">Botella 100ml</span>
+                <span class="price-value">$32.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 10ml</span>
+                <span class="price-value">$4.500</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 5ml</span>
+                <span class="price-value">$2.900</span>
+              </div>
+            </div>
+            <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20consultar%20por%20*Raghba%20de%20Lattafa*%20%F0%9F%8C%B9" target="_blank" class="btn btn--card">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Producto 6 -->
+        <article class="product-card" data-category="designer">
+          <div class="product-card__badge">Diseñador</div>
+          <div class="product-card__visual">
+            <div class="product-card__bottle product-card__bottle--6" aria-hidden="true">
+              <div class="bottle-shape">
+                <div class="bottle-cap"></div>
+                <div class="bottle-body">
+                  <div class="bottle-label">AG</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Acqua di Giò Profumo</h3>
+            <p class="product-card__brand">Giorgio Armani</p>
+            <div class="product-card__prices">
+              <div class="price-row">
+                <span class="price-label">Botella 75ml</span>
+                <span class="price-value">$54.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 10ml</span>
+                <span class="price-value">$7.000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Decant 5ml</span>
+                <span class="price-value">$4.300</span>
+              </div>
+            </div>
+            <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20consultar%20por%20*Acqua%20di%20Gi%C3%B2%20Profumo%20de%20Armani*%20%F0%9F%8C%B9" target="_blank" class="btn btn--card">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /catalog__grid -->
+
+      <div class="catalog__cta">
+        <p>¿No encontrás lo que buscás? Tenemos muchos más perfumes disponibles.</p>
+        <a href="https://wa.me/5493814000000?text=Hola%2C%20quisiera%20ver%20el%20cat%C3%A1logo%20completo%20de%20perfumes%20%F0%9F%8C%B9" target="_blank" class="btn btn--primary">
+          Ver catálogo completo por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ¿QUÉ ES UN DECANT?
+  ============================================================ -->
+  <section class="section decants" id="decants">
+    <div class="container">
+      <div class="decants__inner">
+        <div class="decants__text">
+          <p class="section__eyebrow">Para los que quieren probar</p>
+          <h2 class="section__title">¿Qué es un decant?</h2>
+          <p class="decants__desc">
+            Un <strong>decant</strong> es una porción del perfume original traspasada a un frasco pequeño (5 ml o 10 ml). 
+            Mismo perfume, misma calidad, menor precio. Ideal para probar antes de comprar la botella completa o para rotar fragancias sin gastar una fortuna.
+          </p>
+          <ul class="decants__benefits">
+            <li>
+              <span class="benefit__icon">✦</span>
+              <div>
+                <strong>Probás sin arriesgar</strong>
+                <p>Conocés el perfume en tu piel antes de invertir en la botella completa.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit__icon">✦</span>
+              <div>
+                <strong>Precio accesible</strong>
+                <p>Desde $2.900. Lujo real al alcance de cualquiera.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit__icon">✦</span>
+              <div>
+                <strong>Ideal para viajeros</strong>
+                <p>Tamaño perfecto para llevar en cartera o bolso sin problemas.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit__icon">✦</span>
+              <div>
+                <strong>Rotá tu colección</strong>
+                <p>Tenés varios perfumes sin necesitar botellas enteras. La experiencia de coleccionista.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="decants__visual" aria-hidden="true">
+          <div class="decant-display">
+            <div class="decant-vial decant-vial--lg">
+              <div class="vial-cap"></div>
+              <div class="vial-body">
+                <span>10 ml</span>
+              </div>
+            </div>
+            <div class="decant-vial decant-vial--sm">
+              <div class="vial-cap"></div>
+              <div class="vial-body">
+                <span>5 ml</span>
+              </div>
+            </div>
+            <div class="decant-label">Decants originales</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CÓMO COMPRAR
+  ============================================================ -->
+  <section class="section how-to-buy" id="como-comprar">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Simple y rápido</p>
+        <h2 class="section__title">Cómo comprar</h2>
+        <p class="section__sub">En menos de 5 minutos tenés tu pedido en camino.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__number">01</div>
+          <div class="step__content">
+            <h3>Elegís el perfume</h3>
+            <p>Explorá el catálogo y elegí el perfume que querés. Botella completa o decant.</p>
+          </div>
+          <div class="step__connector" aria-hidden="true"></div>
+        </div>
+        <div class="step">
+          <div class="step__number">02</div>
+          <div class="step__content">
+            <h3>Escribís por WhatsApp</h3>
+            <p>Tocás el botón y te ponés en contacto directo. Sin formularios ni demoras.</p>
+          </div>
+          <div class="step__connector" aria-hidden="true"></div>
+        </div>
+        <div class="step">
+          <div class="step__number">03</div>
+          <div class="step__content">
+            <h3>Enviás tu ubicación</h3>
+            <p>Compartís tu dirección en Tucumán para coordinar la entrega.</p>
+          </div>
+          <div class="step__connector" aria-hidden="true"></div>
+        </div>
+        <div class="step">
+          <div class="step__number">04</div>
+          <div class="step__content">
+            <h3>Recibís por Uber Moto</h3>
+            <p>El pedido llega directo a tu puerta. Rápido, seguro y sin salir de casa.</p>
+          </div>
+          <div class="step__connector" aria-hidden="true"></div>
+        </div>
+        <div class="step">
+          <div class="step__number">05</div>
+          <div class="step__content">
+            <h3>Acordás el pago</h3>
+            <p>Pagás al recibir el pedido. Efectivo, transferencia o el método que prefieras.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-to-buy__cta">
+        <a href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%8C%B9" target="_blank" class="btn btn--primary btn--large">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.874L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.851 0-3.584-.504-5.073-1.383l-.361-.214-3.761.981.998-3.648-.236-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Quiero hacer mi pedido
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INFO DE ENVÍOS
+  ============================================================ -->
+  <section class="section shipping" id="envios">
+    <div class="container">
+      <div class="shipping__inner">
+        <div class="shipping__text">
+          <p class="section__eyebrow">Logística</p>
+          <h2 class="section__title">Envíos en Tucumán</h2>
+          <p class="shipping__desc">
+            Trabajamos exclusivamente dentro de <strong>San Miguel de Tucumán y alrededores</strong>. Cada pedido se envía mediante <strong>Uber Moto</strong>, garantizando entregas rápidas y seguras directamente a tu domicilio.
+          </p>
+        </div>
+        <div class="shipping__cards">
+          <div class="shipping-card">
+            <div class="shipping-card__icon">📍</div>
+            <h3>Solo Tucumán</h3>
+            <p>Cubrimos San Miguel de Tucumán y zonas aledañas. Consultá si tu zona está disponible.</p>
+          </div>
+          <div class="shipping-card">
+            <div class="shipping-card__icon">🏍️</div>
+            <h3>Uber Moto</h3>
+            <p>Entrega puerta a puerta mediante Uber Moto. El costo de envío corre a cargo del comprador.</p>
+          </div>
+          <div class="shipping-card">
+            <div class="shipping-card__icon">⚡</div>
+            <h3>Entrega rápida</h3>
+            <p>Una vez coordinado el pedido, tu perfume llega en menos de 60 minutos (según disponibilidad).</p>
+          </div>
+          <div class="shipping-card">
+            <div class="shipping-card__icon">💳</div>
+            <h3>Pago flexible</h3>
+            <p>Acordamos el pago al momento de la entrega. Efectivo o transferencia bancaria.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER / CONTACTO
+  ============================================================ -->
+  <footer class="footer" id="contacto">
+    <div class="container">
+      <div class="footer__inner">
+
+        <div class="footer__brand">
+          <a href="#inicio" class="logo logo--light">
+            <span class="logo__icon">◈</span>
+            <span class="logo__name">AURA <em>Parfums</em></span>
+          </a>
+          <p class="footer__tagline">Lujo auténtico, precio justo.</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#decants">¿Qué es un decant?</a></li>
+            <li><a href="#como-comprar">Cómo comprar</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__contact">
+          <h4>Contacto</h4>
+          <ul>
+            <li>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.874L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.851 0-3.584-.504-5.073-1.383l-.361-.214-3.761.981.998-3.648-.236-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+              <a href="https://wa.me/5493814000000" target="_blank">WhatsApp</a>
+            </li>
+            <li>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              San Miguel de Tucumán, Argentina
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 AURA Parfums · Todos los derechos reservados · Tucumán, Argentina</p>
+        <p class="footer__disclaimer">Los precios son de referencia y pueden variar. Consultá disponibilidad por WhatsApp.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       BOTÓN FLOTANTE DE WHATSAPP
+  ============================================================ -->
+  <a
+    href="https://wa.me/5493814000000?text=Hola%2C%20quiero%20consultar%20sobre%20sus%20perfumes%20%F0%9F%8C%B9"
+    target="_blank"
+    class="whatsapp-float"
+    id="whatsappFloat"
+    aria-label="Contactar por WhatsApp"
+  >
+    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.874L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.851 0-3.584-.504-5.073-1.383l-.361-.214-3.761.981.998-3.648-.236-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    <span class="whatsapp-float__tooltip">¡Escribinos!</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
