@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui";
+import { TrustBadge } from "@/components/ui";
 import { formatPrice } from "@/lib/utils";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import type { ProductData } from "@/types";
@@ -46,8 +47,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 {product.type === "ARABE" ? "Árabe Exclusivo" : "Diseñador"}
               </Badge>
               {product.featured && (
-                <Badge variant="bottle">Destacado</Badge>
-              )}
+  <Badge variant="bottle">Destacado</Badge>
+)}
+<TrustBadge />
             </div>
 
             {/* Hover Action Overlay Button */}
