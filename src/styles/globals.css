@@ -79,11 +79,80 @@ html {
 }
 
 body {
-  background-color: #080808;
-  color: var(--color-midnight-100);
+  background-color: #050507;
+  color: #e2e8f0;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Luxury Utilities */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FFF5D6 0%, #D4A843 50%, #8A6E1F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-text-bright {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FBE39D 50%, #D4A843 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: rgba(15, 17, 26, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 168, 67, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(212, 168, 67, 0.35);
+  box-shadow: 0 12px 40px 0 rgba(212, 168, 67, 0.1);
+  transform: translateY(-2px);
+}
+
+.gold-button {
+  background: linear-gradient(135deg, #D4A843 0%, #B8922E 100%);
+  color: #050507;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.25);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-button:hover {
+  background: linear-gradient(135deg, #FBE39D 0%, #D4A843 100%);
+  box-shadow: 0 6px 28px rgba(212, 168, 67, 0.4);
+  transform: translateY(-1px);
+}
+
+.gold-button-outline {
+  background: rgba(5, 5, 7, 0.6);
+  backdrop-filter: blur(12px);
+  color: #FBE39D;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  transition: all 0.3s ease;
+}
+
+.gold-button-outline:hover {
+  border-color: rgba(212, 168, 67, 0.8);
+  background: rgba(212, 168, 67, 0.1);
+  color: #ffffff;
 }
 
 ::selection {
@@ -96,16 +165,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: #050507;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-midnight-600);
+  background: rgba(212, 168, 67, 0.2);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold-600);
+  background: var(--color-gold-500);
 }
 
 @media (prefers-reduced-motion: reduce) {

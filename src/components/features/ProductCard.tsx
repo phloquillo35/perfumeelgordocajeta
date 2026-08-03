@@ -25,63 +25,73 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <Link href={`/catalogo/${product.slug}`} className="group block">
-        <motion.div
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.3 }}
-          className="relative border border-white/[0.06] overflow-hidden bg-black/40 backdrop-blur-sm transition-colors duration-700 hover:border-white/[0.12] hover:bg-black/60"
-        >
-          <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-midnight-900 via-black to-midnight-950">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent" />
+      <Link href={`/catalogo/${product.slug}`} className="group block h-full">
+        <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col relative group-hover:border-gold-500/40 transition-all duration-500">
+          {/* Image Container with Ambient Glow */}
+          <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-[#090b12] to-[#040406] flex items-center justify-center p-6">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-10" />
+
             <motion.img
               whileHover={{ scale: 1.08 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               src={imageUrl}
               alt={product.name}
-              className="relative z-[1] w-full h-full object-contain p-8"
+              className="relative z-[1] w-full h-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)]"
               loading="lazy"
             />
-            <div className="absolute top-4 left-4 z-20 flex gap-2">
+
+            {/* Badges */}
+            <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-2">
               <Badge variant={product.type === "ARABE" ? "arabe" : "disenador"}>
-                {product.type === "ARABE" ? "Árabe" : "Diseñador"}
+                {product.type === "ARABE" ? "Árabe Exclusivo" : "Diseñador"}
               </Badge>
               {product.featured && (
                 <Badge variant="bottle">Destacado</Badge>
               )}
             </div>
+
+            {/* Hover Action Overlay Button */}
+            <div className="absolute bottom-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+              <span className="gold-button !py-2 !px-5 !text-[10px] shadow-lg">
+                Ver Detalles Olfativos →
+              </span>
+            </div>
           </div>
 
-          <div className="p-5">
-            {product.brand && (
-              <p className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-medium mb-1.5">
-                {product.brand}
-              </p>
-            )}
-            <h3 className="font-serif text-lg text-white/90 mb-3 group-hover:text-champagne transition-colors duration-500">
-              {product.name}
-            </h3>
+          {/* Product Info */}
+          <div className="p-6 flex-1 flex flex-col justify-between bg-black/40">
+            <div>
+              {product.brand && (
+                <p className="text-[10px] text-gold-400/90 uppercase tracking-[0.25em] font-semibold mb-1.5">
+                  {product.brand}
+                </p>
+              )}
+              <h3 className="font-serif text-xl text-white mb-3 group-hover:text-gold-200 transition-colors duration-300 line-clamp-1">
+                {product.name}
+              </h3>
+            </div>
 
-            <div className="flex items-center gap-4">
+            {/* Pricing Pills */}
+            <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
               {bottleVariant && (
-                <span className="text-sm text-white/40 font-light">
-                  Botella{" "}
-                  <span className="text-champagne/80 font-medium">
+                <div className="bg-black/60 border border-gold-500/30 rounded-lg px-3 py-1.5 flex items-center justify-between gap-2 flex-1 min-w-[120px]">
+                  <span className="text-[10px] uppercase text-slate-400 font-medium">Botella</span>
+                  <span className="text-xs font-semibold text-gold-300">
                     {formatPrice(Number(bottleVariant.price))}
                   </span>
-                </span>
+                </div>
               )}
               {decantVariant && (
-                <span className="text-sm text-white/40 font-light">
-                  Decant {decantVariant.ml}ml{" "}
-                  <span className="text-champagne/80 font-medium">
+                <div className="bg-black/60 border border-white/15 rounded-lg px-3 py-1.5 flex items-center justify-between gap-2 flex-1 min-w-[120px]">
+                  <span className="text-[10px] uppercase text-slate-400 font-medium">Decant {decantVariant.ml}ml</span>
+                  <span className="text-xs font-semibold text-white">
                     {formatPrice(Number(decantVariant.price))}
                   </span>
-                </span>
+                </div>
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
       </Link>
     </motion.div>
   );

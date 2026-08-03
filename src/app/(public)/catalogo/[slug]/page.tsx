@@ -70,7 +70,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   };
 
   return (
-    <div className="min-h-screen py-24">
+    <div className="min-h-screen py-24 bg-[#050507]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -79,30 +79,33 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="mb-8">
           <Link
             href="/catalogo"
-            className="text-midnight-400 hover:text-gold-400 transition-colors text-sm"
+            className="text-slate-400 hover:text-gold-300 transition-colors text-sm flex items-center gap-2"
           >
-            &larr; Volver al catálogo
+            <span>&larr;</span> Volver al catálogo
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-midnight-900 via-black to-midnight-950 border border-midnight-700/50">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent" />
-            <img
-              src={imageUrl}
-              alt={product.name}
-              loading="lazy"
-              className="relative z-[1] w-full h-full object-contain p-12"
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Main Image Glass Container */}
+          <div className="glass-card rounded-3xl p-8 relative overflow-hidden">
+            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-b from-[#090c14] to-[#040406] flex items-center justify-center p-8">
+              <img
+                src={imageUrl}
+                alt={product.name}
+                loading="lazy"
+                className="w-full h-full object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]"
+              />
+            </div>
           </div>
 
+          {/* Details Section */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <Badge variant={product.type === "ARABE" ? "arabe" : "disenador"}>
-                {product.type === "ARABE" ? "Árabe" : "Diseñador"}
+                {product.type === "ARABE" ? "Árabe Exclusivo" : "Diseñador"}
               </Badge>
               {product.featured && (
-                <Badge variant="bottle">Destacado</Badge>
+                <Badge variant="bottle">Colección Destacada</Badge>
               )}
             </div>
 
@@ -111,42 +114,69 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </h1>
 
             {product.brand && (
-              <p className="text-gold-400 text-lg font-medium mb-6">
+              <p className="text-gold-400 text-lg font-medium mb-6 uppercase tracking-wider">
                 {product.brand}
               </p>
             )}
 
-            <p className="text-midnight-200 leading-relaxed mb-8">
+            <p className="text-slate-300 leading-relaxed mb-8 font-light text-base">
               {product.description}
             </p>
 
+            {/* Olfactory Notes Card */}
             {product.notes && (
-              <div className="mb-8">
-                <h2 className="font-serif text-xl text-white mb-3">Notas</h2>
-                <p className="text-midnight-300 leading-relaxed">{product.notes}</p>
+              <div className="glass-card p-6 rounded-2xl mb-8">
+                <h2 className="font-serif text-xl gold-text-bright mb-3 flex items-center gap-2">
+                  <span>✨</span> Pirámide Olfativa
+                </h2>
+                <p className="text-slate-300 text-sm leading-relaxed font-light">{product.notes}</p>
               </div>
             )}
 
+            {/* Performance Indicators */}
+            <div className="glass-card p-6 rounded-2xl mb-8 space-y-4">
+              <h3 className="font-serif text-lg text-white mb-3">Desempeño en Piel</h3>
+              <div>
+                <div className="flex justify-between text-xs text-slate-300 mb-1">
+                  <span>Fijación / Duración</span>
+                  <span className="text-gold-300 font-semibold">Hasta 12+ Horas</span>
+                </div>
+                <div className="w-full h-2 bg-black/60 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-gold-500 to-gold-300 rounded-full w-[90%]" />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between text-xs text-slate-300 mb-1">
+                  <span>Estela & Proyección</span>
+                  <span className="text-gold-300 font-semibold">Intensa y Magnética</span>
+                </div>
+                <div className="w-full h-2 bg-black/60 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-gold-500 to-gold-300 rounded-full w-[85%]" />
+                </div>
+              </div>
+            </div>
+
+            {/* Presentation Variants */}
             <div className="space-y-4 mb-8">
               {normalizedProduct.variants
                 .filter((v) => v.type === "BOTTLE")
                 .map((variant) => (
                   <div
                     key={variant.id}
-                    className="bg-midnight-800/40 border border-midnight-700/50 rounded-xl p-6"
+                    className="glass-card rounded-2xl p-6 border border-gold-500/30"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <Badge variant="bottle">Botella</Badge>
-                        <span className="text-midnight-300 text-sm ml-3">{variant.ml}ml</span>
+                        <Badge variant="bottle">Botella Completa</Badge>
+                        <span className="text-slate-300 text-sm ml-3 font-medium">{variant.ml}ml</span>
                       </div>
-                      <span className="text-2xl font-serif text-gold-400">
+                      <span className="text-3xl font-serif gold-text-bright font-bold">
                         {formatPrice(variant.price)}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className={`text-sm ${variant.stock > 0 ? "text-green-400" : "text-red-400"}`}>
-                        {variant.stock > 0 ? "En stock" : "Agotado"}
+                    <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                      <span className={`text-xs ${variant.stock > 0 ? "text-emerald-400" : "text-rose-400"}`}>
+                        {variant.stock > 0 ? "● En stock disponible" : "● Agotado temporalmente"}
                       </span>
                       <WhatsAppButton
                         params={{
@@ -155,7 +185,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                           ml: variant.ml,
                           price: variant.price,
                         }}
-                        label="Consultar por WhatsApp"
+                        label="Pedir Botella por WhatsApp"
                       />
                     </div>
                   </div>
@@ -166,20 +196,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 .map((variant) => (
                   <div
                     key={variant.id}
-                    className="bg-midnight-800/40 border border-midnight-700/50 rounded-xl p-6"
+                    className="glass-card rounded-2xl p-6 border border-white/15"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <Badge variant="decant">Decant</Badge>
-                        <span className="text-midnight-300 text-sm ml-3">{variant.ml}ml</span>
+                        <Badge variant="decant">Decant (Muestra de Vidrio)</Badge>
+                        <span className="text-slate-300 text-sm ml-3 font-medium">{variant.ml}ml</span>
                       </div>
-                      <span className="text-2xl font-serif text-gold-400">
+                      <span className="text-3xl font-serif text-white font-bold">
                         {formatPrice(variant.price)}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className={`text-sm ${variant.stock > 0 ? "text-green-400" : "text-red-400"}`}>
-                        {variant.stock > 0 ? "En stock" : "Agotado"}
+                    <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                      <span className={`text-xs ${variant.stock > 0 ? "text-emerald-400" : "text-rose-400"}`}>
+                        {variant.stock > 0 ? "● En stock disponible" : "● Agotado temporalmente"}
                       </span>
                       <WhatsAppButton
                         params={{
@@ -188,7 +218,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                           ml: variant.ml,
                           price: variant.price,
                         }}
-                        label="Consultar por WhatsApp"
+                        label="Pedir Decant por WhatsApp"
                       />
                     </div>
                   </div>
@@ -196,27 +226,27 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-3 p-4 mb-6 rounded-xl bg-midnight-900/60 border border-gold-500/20 text-center">
+            <div className="grid grid-cols-3 gap-3 p-5 mb-6 rounded-2xl glass-card text-center">
               <div className="flex flex-col items-center">
-                <span className="text-gold-400 text-xl mb-1">✨</span>
+                <span className="text-gold-400 text-2xl mb-1">✨</span>
                 <span className="text-xs text-white font-medium">100% Originales</span>
-                <span className="text-[10px] text-midnight-400">Garantía Directa</span>
+                <span className="text-[10px] text-slate-400">Garantía Directa</span>
               </div>
-              <div className="flex flex-col items-center border-x border-midnight-800">
-                <span className="text-gold-400 text-xl mb-1">🧪</span>
+              <div className="flex flex-col items-center border-x border-white/10">
+                <span className="text-gold-400 text-2xl mb-1">🧪</span>
                 <span className="text-xs text-white font-medium">Decants Puros</span>
-                <span className="text-[10px] text-midnight-400">Sin Diluir</span>
+                <span className="text-[10px] text-slate-400">Atomizador de Vidrio</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="text-gold-400 text-xl mb-1">🚚</span>
+                <span className="text-gold-400 text-2xl mb-1">🚚</span>
                 <span className="text-xs text-white font-medium">Envío Seguro</span>
-                <span className="text-[10px] text-midnight-400">Protección Total</span>
+                <span className="text-[10px] text-slate-400">Protección Térmica</span>
               </div>
             </div>
 
             <WhatsAppButton
               params={{ isGeneric: true }}
-              label="Consulta Genérica por WhatsApp"
+              label="Consulta Asesoría Olfativa por WhatsApp"
               variant="outline"
               className="w-full"
             />

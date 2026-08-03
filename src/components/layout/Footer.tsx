@@ -15,8 +15,8 @@ const FOOTER_LINKS: Record<string, FooterLink[]> = {
   categorias: [
     { label: "Perfumes Árabes", href: "/catalogo?tipo=ARABE" },
     { label: "Perfumes de Diseñador", href: "/catalogo?tipo=DISENADOR" },
-    { label: "Decants", href: "/catalogo?presentacion=DECANT" },
-    { label: "Botellas", href: "/catalogo?presentacion=BOTTLE" },
+    { label: "Decants (5ml / 10ml)", href: "/catalogo?presentacion=DECANT" },
+    { label: "Botellas Completas", href: "/catalogo?presentacion=BOTTLE" },
   ],
   contacto: [
     { label: "contacto@perfumesexclusivos.com", href: "mailto:contacto@perfumesexclusivos.com" },
@@ -26,16 +26,16 @@ const FOOTER_LINKS: Record<string, FooterLink[]> = {
 
 const HEADINGS: Record<string, string> = {
   navegacion: "Navegación",
-  categorias: "Categorías",
-  contacto: "Contacto",
+  categorias: "Colecciones",
+  contacto: "Atención al Cliente",
 };
 
-function FooterLink({ link }: { link: FooterLink }) {
+function FooterLinkItem({ link }: { link: FooterLink }) {
   if (link.href.startsWith("mailto:") || link.href.startsWith("tel:")) {
     return (
       <a
         href={link.href}
-        className="text-white/35 hover:text-champagne text-sm transition-colors duration-300 font-light"
+        className="text-slate-400 hover:text-gold-300 text-sm transition-colors duration-300 font-light"
       >
         {link.label}
       </a>
@@ -44,7 +44,7 @@ function FooterLink({ link }: { link: FooterLink }) {
   return (
     <Link
       href={link.href}
-      className="text-white/35 hover:text-champagne text-sm transition-colors duration-300 font-light"
+      className="text-slate-400 hover:text-gold-300 text-sm transition-colors duration-300 font-light"
     >
       {link.label}
     </Link>
@@ -53,11 +53,11 @@ function FooterLink({ link }: { link: FooterLink }) {
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#080808] border-t border-white/[0.04]">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(201,169,108,0.03)_0%,transparent_60%)] pointer-events-none" />
+    <footer className="relative bg-[#050507] border-t border-gold-500/20">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(212,168,67,0.05)_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-28">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-24 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,17 +65,16 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-1"
           >
-            <Link href="/" className="flex items-center gap-3 mb-5">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-champagne to-gold-600 flex items-center justify-center">
-                <span className="text-black text-sm font-bold">P</span>
+            <Link href="/" className="flex items-center gap-3 mb-5 group">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold-400 via-gold-500 to-gold-700 flex items-center justify-center shadow-lg shadow-gold-500/20">
+                <span className="font-serif text-black font-bold text-base">P</span>
               </div>
-              <span className="font-serif text-xl text-white/90 tracking-wide">
-                Perfumes <span className="text-champagne">Exclusivos</span>
+              <span className="font-serif text-xl gold-text-bright tracking-wide">
+                Perfumes <span className="text-white/60 font-light">Exclusivos</span>
               </span>
             </Link>
-            <p className="text-white/25 text-sm leading-relaxed font-light tracking-wide max-w-xs">
-              Descubre la más exclusiva colección de perfumes árabes y de diseñador.
-              La esencia del lujo en cada fragancia.
+            <p className="text-slate-400 text-sm leading-relaxed font-light max-w-xs mb-6">
+              Haute Parfumerie & Decants de Nicho. Colección curada de los más cotizados elixires árabes y de diseñador.
             </p>
           </motion.div>
 
@@ -87,13 +86,13 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
             >
-              <h3 className="font-sans text-[11px] uppercase tracking-[0.25em] text-white/40 mb-6">
+              <h3 className="font-sans text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold mb-6">
                 {HEADINGS[key]}
               </h3>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.href}>
-                    <FooterLink link={link} />
+                    <FooterLinkItem link={link} />
                   </li>
                 ))}
               </ul>
@@ -106,13 +105,13 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-white/20 text-xs font-light tracking-wide">
+          <p className="text-slate-500 text-xs font-light tracking-wide">
             &copy; {new Date().getFullYear()} Perfumes Exclusivos. Todos los derechos reservados.
           </p>
-          <span className="text-white/15 text-[10px] uppercase tracking-[0.15em] font-light">
-            Hecho con dedicación para los amantes de las fragancias
+          <span className="text-gold-400/60 text-[11px] uppercase tracking-[0.2em] font-medium">
+            100% Fragancias Auténticas & Decants de Vidrio
           </span>
         </motion.div>
       </div>
