@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[92vh] bg-[#050507] flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-[92vh] bg-[#050507] flex items-center justify-center overflow-hidden">
       {/* Ambient Radial Glowing Orbs */}
       <motion.div
         animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
@@ -15,7 +16,10 @@ export function HeroSection() {
 
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,67,0.05)_0%,transparent_75%)] pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-16 flex flex-col items-center justify-between min-h-[85vh]">
+      <div
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pb-16 flex flex-col items-center justify-between min-h-[85vh]"
+        style={{ paddingTop: "calc(5rem + env(safe-area-inset-top))" }}
+      >
         <div className="flex-1 flex flex-col items-center justify-center text-center my-auto">
           {/* Subtitle Crest Badge */}
           <motion.div
@@ -94,6 +98,13 @@ export function HeroSection() {
             </div>
           ))}
         </motion.div>
+
+        <div className="md:hidden fixed bottom-4 right-4 z-50">
+          <WhatsAppButton
+            label="Asesoría WhatsApp"
+            className="px-4 py-3 text-[10px] uppercase tracking-[0.15em]"
+          />
+        </div>
       </div>
     </section>
   );
