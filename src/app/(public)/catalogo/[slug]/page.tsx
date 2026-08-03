@@ -49,8 +49,32 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const imageUrl = product.images[0] || PLACEHOLDER_IMAGES.product(product.type);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: imageUrl,
+    description: product.description,
+    brand: {
+      "@type": "Brand",
+      name: product.brand || "Perfumes Exclusivos",
+    },
+    offers: normalizedProduct.variants.map((v) => ({
+      "@type": "Offer",
+      priceCurrency: "USD",
+      price: v.price,
+      availability:
+        v.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    })),
+  };
+
   return (
     <div className="min-h-screen py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link
@@ -169,6 +193,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     </div>
                   </div>
                 ))}
+            </div>
+
+            {/* Trust Badges */}
+            <div className="grid grid-cols-3 gap-3 p-4 mb-6 rounded-xl bg-midnight-900/60 border border-gold-500/20 text-center">
+              <div className="flex flex-col items-center">
+                <span className="text-gold-400 text-xl mb-1">✨</span>
+                <span className="text-xs text-white font-medium">100% Originales</span>
+                <span className="text-[10px] text-midnight-400">Garantía Directa</span>
+              </div>
+              <div className="flex flex-col items-center border-x border-midnight-800">
+                <span className="text-gold-400 text-xl mb-1">🧪</span>
+                <span className="text-xs text-white font-medium">Decants Puros</span>
+                <span className="text-[10px] text-midnight-400">Sin Diluir</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-gold-400 text-xl mb-1">🚚</span>
+                <span className="text-xs text-white font-medium">Envío Seguro</span>
+                <span className="text-[10px] text-midnight-400">Protección Total</span>
+              </div>
             </div>
 
             <WhatsAppButton
