@@ -1,74 +1,53 @@
-# AGENTS.md (Workflow Context) — Perfumes
+# AGENTS.md (Workflow Context) — Perfumes (Sebi Fragrance Decants)
 > Generado: 2026-08-25 · Herramienta: opencode (loop MAESTRO) · Proyecto: /Users/pablohernandezcanelo/Documents/Perfumes
 
 ## 🎯 Objetivo actual
-Mejorar calidad/arquitectura/diseño (usuario: "página horrible, detalles espantosos, arquitectura mal lograda, diseños inconsistentes"). Ejecutado vía loop MAESTRO (planner → joaco → tester → reviewer/designer → handoff).
+Rebrand del e-commerce de perfumes + carrito de compras con pedido por WhatsApp.
+Nombre: **Sebi Fragrance Decants** · Ubicación: **Tafi Viejo, Tucumán, Argentina** ·
+Instagram **@decantstucuman** · WhatsApp vendedor: **5493813844876**.
+El cliente elige perfumes en el catálogo → los agrega a un carrito → completa
+nombre/dirección/teléfono → la página genera un mensaje de WhatsApp al vendedor
+con el link de cada perfume elegido.
 
 ## 📍 Estado actual
-  Branch: main · Tracking: origin/main · Working tree: limpio tras Iter 1.
-  Últimos commits:
-   a2fd843 fix: unify FragranceFinder background to surface token (closes Iter 1 scope)
-   3d2ce9c feat: Iter 1 — semantic color tokens + gold button system
-   bbe1000 feat: complete UI work and cleanup
+  Branch: main · Tracking: origin/main · Working tree: limpio tras este handoff.
+  Últimos commits (pendientes de push):
+   08e1b58 feat: Iter 2+3 — carrito + checkout con pedido por WhatsApp
+   83278c3 feat: Iter 1 — rebrand Sebi Fragrance Decants, logo, Instagram y teléfono
 
-## ✅ Iteración 1 (DONE · 2026-08-25)
-Unificar near-negros en tokens + botón dorado.
-- `globals.css`: tokens `--color-base:#05070a`, `--color-surface:#0b0e14`, `--color-surface-sunken:#030407`; clases `.btn-gold`/`.btn-gold-outline` sin `!important`.
-- Migrados a tokens: Header, Footer, HeroSection, ProductCard, CategorySection, CTASection, FragranceFinder, page.tsx.
-- CTA blanco plano → dorado. `gold-button` (legacy) eliminado.
-- VERIFY: typecheck/lint/build en verde. REFLECT: APPROVED.
-- Commits: 3d2ce9c + a2fd843 (pusheados a origin/main).
+## ✅ Loop MAESTRO — Iteraciones (todas GREEN + APPROVED)
+- **Iter 1 (rebrand):** metadata/layout → "Sebi Fragrance Decants"; Header/Footer/contacto
+  con nuevo nombre, logo (`public/images/logo.jpg`), Instagram (Header/Footer/contacto),
+  ubicación Tafi Viejo, teléfono centralizado en `WHATSAPP_PHONE` (src/lib/whatsapp.ts, con `.trim()`).
+- **Iter 2+3 (carrito + checkout):** `src/lib/cart.tsx` (CartProvider/useCart, localStorage),
+  `CartDrawer.tsx` (drawer + formulario checkout), `AddToCart.tsx` (selector variante + cantidad),
+  `whatsapp.ts` → `buildCheckoutWhatsAppMessage`/`getCheckoutWhatsAppLink` (link `/catalogo/{slug}` por item).
+  Header con botón de carrito + badge; `(public)/layout.tsx` envuelve en CartProvider.
+- VERIFY: build/typecheck/lint verdes, 0 `any`, 0 "Perfumes Exclusivos"/"Ciudad de México".
+- REFLECT: APPROVED (flujo completo cumple el objetivo; falta focus-trap en drawer, no bloqueante).
 
-## 🧱 Arquitectura / hallazgos
-- App real: Next.js 16 (App Router) en `src/` (`(public)` + `(admin)`), Prisma, next-auth.
-- SITIO ESTÁTICO LEGACY MUERTO en root (`index.html` "AURA Parfums", `style.css`, `script.js`) — BORRADO en Iter 2 (sin referencias funcionales).
-- `tailwind.config.js` (v3 legacy) — BORRADO en Iter 2. PostCSS sigue CSS-first (`@tailwindcss/postcss`).
-- `design-system/perfumes-exclusivos/` existe pero vacío/incipiente.
+## 🧱 Arquitectura / decisiones
+- Next.js 16 App Router + React 19 + Tailwind v4 + Prisma (PostgreSQL). Scripts: `dev -p 3003`, `build`, `lint`, `typecheck`.
+- **Vercel:** proyecto renombrado `perfumes-exclusivos` → `sebi-fragrance-decants`.
+  URL de producción: **https://sebi-fragrance-decants.vercel.app**.
+- **Env:** `NEXT_PUBLIC_WHATSAPP_PHONE=5493813844876` seteado en Vercel (production, no-sensitive)
+  y en `.env`/`.env.example`. `WHATSAPP_PHONE` lo centraliza y hace `.trim()`.
+- **Carrito:** estado en `localStorage` (key `sebi-cart`), hidratado post-mount (sin mismatch SSR).
+- **WhatsApp pedido:** mensaje incluye nombre, dirección, teléfono y `ORIGIN/catalogo/{slug}` por item
+  (ORIGIN = window.location.origin en cliente → en prod apunta a la URL real).
 
-## ✅ Iteración 2 (DONE · 2026-08-25)
-Limpieza arquitectónica + coherencia de tokens.
-- Borrados (git rm): `index.html`, `style.css`, `script.js`, `tailwind.config.js`.
-- Residuales near-negros migrados a tokens: DecantSection→`bg-base`, StorySection→`bg-surface`, TestimonialsSection→`bg-surface`, AboutContent→`bg-surface`, catalogo/[slug]→`bg-base`.
-- `ui/Badge.tsx`: variantes `arabe`/`disenador`/`decant` unificadas a acento gold (gold-200/300/400 sobre midnight); `default` neutra. Eliminados amber/blue/purple. API intacta.
-- VERIFY: typecheck/lint/build en verde · grep hex residuales = 0 · grep refs a borrados = 0.
-
-## ✅ Iteración 3 (DONE · 2026-08-25)
-Cerrar gate de consistencia de color (0 magic hex / 0 colores poli-cromáticos).
-- Residuales near-negros migrados a tokens: catalogo/[slug] y DecantSection → `from-surface to-surface-sunken`.
-- Gradientes "champagne" hardcodeados tokenizados: AboutContent y WhatsAppButton → `from-champagne-dark via-champagne to-champagne-dark` (tokens ya en globals.css:28-29).
-- Chips/filtros poli-cromáticos → acento dorado: catalogo (amber/blue/purple activos → `bg-gold-500/20 text-gold-400 border-gold-500/30`) y contacto (Email blue → `text-gold-400` / `bg-gold-500/10 border-gold-500/20`). Inactivo ya midnight. Funcionalidad intacta.
-- VERIFY: typecheck/lint/build en verde · grep hex residuales = 0 (fuera de @theme) · grep `amber-|blue-|purple-` en catalogo/page.tsx y contacto/page.tsx = 0.
-
-## ✅ Iteración 4 (DONE · 2026-08-25)
-Sistema de botón único — `Button.tsx` consume `.btn-gold` (Opción B).
-- `ui/Button.tsx`: añadidas variantes `"gold" | "gold-outline"` que aplican las clases
-  `.btn-gold` / `.btn-gold-outline` de `globals.css` (único punto de definición). Para esas
-  variantes NO se aplica el bloque de `size`/`padding` genérico (la clase CSS ya lo controla).
-  Variantes `primary`/`outline`/`ghost`/`danger` (admin) intactas.
-- Migrado el único `<button>` real con estilo dorado: `FragranceFinder.tsx:244`
-  (`<button className="btn-gold-outline">` → `<Button variant="gold-outline">`), conservando
-  `w-full sm:w-auto cursor-pointer`.
-- NOTA de alcance: `CTASection.tsx:59` (`<motion.a>` a WhatsApp) y `FragranceFinder.tsx:238`
-  (`<Link>`) son ANCLAS, no `<button>`; se dejaron en `className="btn-gold*"` (clase compartida,
-  no sistema paralelo) para no romper semántica de navegación. Coincide con verificación I4.S3.
-- VERIFY: typecheck/lint/build en verde · grep `linear-gradient` dorado duplicado fuera de
-  `globals.css` = 0 · `Button.tsx` referencia `btn-gold`, no lo redefine · admin compila.
-
-## 📋 Backlog (vacío — Iter 4 cerrada)
-  _Sin pendientes de arquitectura/calidad conocidos. Loop MAESTRO completó I1–I4._
+## 📋 Backlog (no bloqueante)
+  [low] Focus-trap en CartDrawer (mejora a11y).
+  [low] Quick-add a carrito directo desde ProductCard (hoy se agrega desde la página de detalle).
+  [opt] Persistir pedido en BD (modelo Order ya existe) si algún día se quiere historial.
 
 ## 🧭 Próximo paso
-Loop MAESTRO I1–I4 COMPLETO. Opcionales futuros (fuera de scope): pulido de microinteracciones,
-tests E2E con Playwright, o nuevas features de negocio.
+Desplegar (push a main dispara redeploy en Vercel) y verificar en producción:
+https://sebi-fragrance-decants.vercel.app — flujo catálogo → carrito → checkout → WhatsApp.
 
 ## 🔐 Variables de entorno requeridas
-  DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE
+  DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE (=5493813844876)
 
 ## 📦 Comandos útiles
   dev: next dev -p 3003 · build: next build · lint: eslint src/ · typecheck: tsc --noEmit
   db:push / db:migrate / db:seed / db:studio
-
-## 🧠 Decisiones
-  - Identidad: oro sobre midnight. Un solo near-negro (`--color-base`).
-  - Tailwind v4 (CSS-first `@theme`); no usar tailwind.config.js legacy.
-  - Loop MAESTRO: plan primero, verificación objetiva (GREEN/RED), sin `!important` ni `any`.
