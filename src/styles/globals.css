@@ -28,6 +28,11 @@
   --color-champagne: #f7e7ce;
   --color-champagne-dark: #c9a96c;
 
+  /* Semantic surface tokens — única fuente de verdad para near-negros */
+  --color-base: #05070a;          /* midnight-950: fondo base autoritativo */
+  --color-surface: #0b0e14;       /* un escalón más claro: secciones/tarjetas */
+  --color-surface-sunken: #030407; /* más oscuro: hero / footer de fondo */
+
   --font-serif: "Cormorant", Georgia, serif;
   --font-sans: Montserrat, system-ui, sans-serif;
 
@@ -79,7 +84,7 @@ html {
 }
 
 body {
-  background-color: #050507;
+  background-color: var(--color-base);
   color: #e2e8f0;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -114,9 +119,13 @@ body {
   transform: translateY(-2px);
 }
 
-.gold-button {
-  background: linear-gradient(135deg, #D4A843 0%, #B8922E 100%);
-  color: #050507;
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-600) 100%);
+  color: var(--color-base);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -129,16 +138,20 @@ body {
   overflow: hidden;
 }
 
-.gold-button:hover {
-  background: linear-gradient(135deg, #FBE39D 0%, #D4A843 100%);
+.btn-gold:hover {
+  background: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-gold-500) 100%);
   box-shadow: 0 6px 28px rgba(212, 168, 67, 0.4);
   transform: translateY(-1px);
 }
 
-.gold-button-outline {
-  background: rgba(5, 5, 7, 0.6);
+.btn-gold-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: color-mix(in srgb, var(--color-base) 60%, transparent);
   backdrop-filter: blur(12px);
-  color: #FBE39D;
+  color: var(--color-gold-300);
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -149,7 +162,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.gold-button-outline:hover {
+.btn-gold-outline:hover {
   border-color: rgba(212, 168, 67, 0.8);
   background: rgba(212, 168, 67, 0.1);
   color: #ffffff;
@@ -165,7 +178,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050507;
+  background: var(--color-base);
 }
 
 ::-webkit-scrollbar-thumb {

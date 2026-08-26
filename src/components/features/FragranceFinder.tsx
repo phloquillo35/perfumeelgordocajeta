@@ -235,13 +235,13 @@ export function FragranceFinder() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/catalogo?tipo=ARABE"
-                  className="gold-button w-full sm:w-auto"
+                  className="btn-gold w-full sm:w-auto"
                 >
                   Ver Fragancias Recomendadas
                 </Link>
                 <button
                   onClick={handleReset}
-                  className="gold-button-outline w-full sm:w-auto cursor-pointer"
+                  className="btn-gold-outline w-full sm:w-auto cursor-pointer"
                 >
                   Repetir Diagnóstico
                 </button>

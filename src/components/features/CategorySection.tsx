@@ -25,7 +25,7 @@ const categories = [
 
 export function CategorySection() {
   return (
-    <section className="py-28 relative bg-[#050507]">
+    <section className="py-28 relative bg-base">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(212,168,67,0.04)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
@@ -58,7 +58,7 @@ export function CategorySection() {
                 href={cat.href}
                 className="group relative block rounded-3xl overflow-hidden glass-card h-[500px] lg:h-[580px]"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/60 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-base via-base/60 to-transparent z-10" />
 
                 <motion.img
                   whileHover={{ scale: 1.08 }}
@@ -85,7 +85,7 @@ export function CategorySection() {
                     <p className="text-slate-300 text-sm mb-6 font-light leading-relaxed max-w-md">
                       {cat.description}
                     </p>
-                    <span className="gold-button-outline !py-2 !px-5 text-[10px] inline-flex items-center gap-2 group-hover:bg-gold-500 group-hover:text-black transition-all">
+                    <span className="btn-gold-outline inline-flex items-center gap-2 group-hover:bg-gold-500 group-hover:text-black transition-all">
                       Explorar Colección →
                     </span>
                   </div>

@@ -53,7 +53,7 @@ function FooterLinkItem({ link }: { link: FooterLink }) {
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#050507] border-t border-gold-500/20">
+    <footer className="relative bg-surface-sunken border-t border-gold-500/20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(212,168,67,0.05)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-24 relative z-10">

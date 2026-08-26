@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[92vh] bg-[#050507] flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-[92vh] bg-surface-sunken flex items-center justify-center overflow-hidden pt-20">
       {/* Ambient Radial Glowing Orbs */}
       <motion.div
         animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
@@ -59,12 +59,12 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto"
           >
-            <Link href="/catalogo" className="gold-button w-full sm:w-auto text-center">
+            <Link href="/catalogo" className="btn-gold w-full sm:w-auto text-center">
               Explorar Catálogo de Lujo
             </Link>
             <Link
               href="/catalogo?tipo=ARABE"
-              className="gold-button-outline w-full sm:w-auto text-center"
+              className="btn-gold-outline w-full sm:w-auto text-center"
             >
               Perfumes Árabes Exclusivos
             </Link>

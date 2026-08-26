@@ -29,7 +29,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       <Link href={`/catalogo/${product.slug}`} className="group block h-full">
         <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col relative group-hover:border-gold-500/40 transition-all duration-500">
           {/* Image Container with Ambient Glow */}
-          <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-[#090b12] to-[#040406] flex items-center justify-center p-6">
+          <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-surface to-surface-sunken flex items-center justify-center p-6">
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-10" />
 
             <motion.img
@@ -54,7 +54,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
             {/* Hover Action Overlay Button */}
             <div className="absolute bottom-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-              <span className="gold-button !py-2 !px-5 !text-[10px] shadow-lg">
+              <span className="btn-gold shadow-lg">
                 Ver Detalles Olfativos →
               </span>
             </div>

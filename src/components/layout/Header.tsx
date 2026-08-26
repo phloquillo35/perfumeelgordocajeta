@@ -23,7 +23,7 @@ export function Header() {
   const whatsappUrl = getWhatsAppLink({ isGeneric: true });
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#050507]/80 backdrop-blur-2xl border-b border-gold-500/20 shadow-2xl">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-base/80 backdrop-blur-2xl border-b border-gold-500/20 shadow-2xl">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Brand Crest & Logo */}
@@ -69,7 +69,7 @@ export function Header() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="gold-button-outline !py-2.5 !px-5 text-[10px] flex items-center gap-2"
+              className="btn-gold-outline flex items-center gap-2"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Asesoría Olfativa</span>
@@ -110,7 +110,7 @@ export function Header() {
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#050507]/95 border-b border-gold-500/20 px-6 py-6 space-y-4 backdrop-blur-2xl animate-fade-in">
+        <div className="md:hidden bg-base/95 border-b border-gold-500/20 px-6 py-6 space-y-4 backdrop-blur-2xl animate-fade-in">
           <nav className="flex flex-col space-y-3">
             {NAV_ITEMS.map((item) => (
               <Link
@@ -134,7 +134,7 @@ export function Header() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="gold-button w-full text-center block"
+              className="btn-gold w-full text-center block"
             >
               Asesoría Personalizada por WhatsApp
             </a>
