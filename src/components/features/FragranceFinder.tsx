@@ -129,7 +129,7 @@ export function FragranceFinder() {
   };
 
   return (
-    <section className="py-28 relative bg-[#07070a] border-y border-gold-500/20 overflow-hidden">
+    <section className="py-28 relative bg-surface border-y border-gold-500/20 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,168,67,0.06)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 lg:px-12 relative z-10">
