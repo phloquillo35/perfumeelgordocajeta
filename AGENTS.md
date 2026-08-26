@@ -1,39 +1,47 @@
-# AGENTS.md (Workflow Context) — perfumes
-> Generado: 2026-08-03 14:33:00 · Herramienta: Antigravity · Proyecto: /Users/pablohernandezcanelo/Documents/Perfumes
+# AGENTS.md (Workflow Context) — Perfumes
+> Generado: 2026-08-25 · Herramienta: opencode (loop MAESTRO) · Proyecto: /Users/pablohernandezcanelo/Documents/Perfumes
 
 ## 🎯 Objetivo actual
-Mejoras profesionales de e-commerce (UX, conversión, SEO, modelo de datos y validaciones).
+Mejorar calidad/arquitectura/diseño (usuario: "página horrible, detalles espantosos, arquitectura mal lograda, diseños inconsistentes"). Ejecutado vía loop MAESTRO (planner → joaco → tester → reviewer/designer → handoff).
 
 ## 📍 Estado actual
-- Repositorio Git: Inicializado con commit base `95bad04` y commit de mejoras `641debd` ✅
-- Linter & Typecheck: `npm run lint` (0 warnings) y `npm run typecheck` (0 errors) ✅
-- Deploy: Vercel
-- Stack: Next.js 16 + React 19 + TypeScript 6 + Prisma 5 + NextAuth v5 + Tailwind v4 + framer-motion + zod
+  Branch: main · Tracking: origin/main · Working tree: limpio tras Iter 1.
+  Últimos commits:
+   a2fd843 fix: unify FragranceFinder background to surface token (closes Iter 1 scope)
+   3d2ce9c feat: Iter 1 — semantic color tokens + gold button system
+   bbe1000 feat: complete UI work and cleanup
 
-## ✅ Tareas completadas
-- [x] Initial Commit git (`95bad04`)
-- [x] Script `typecheck` en `package.json`
-- [x] Prisma Schema: Modelos `Order`, `OrderItem` y `Review` con relaciones
-- [x] SEO: Datos estructurados JSON-LD Schema.org (`Product`, `Offer`) en detalle de producto
-- [x] UX/Conversión: Trust badges ("100% Originales", "Decants Puros", "Envío Seguro")
-- [x] WhatsApp: Formateador de pedidos multi-producto para carrito
+## ✅ Iteración 1 (DONE · 2026-08-25)
+Unificar near-negros en tokens + botón dorado.
+- `globals.css`: tokens `--color-base:#05070a`, `--color-surface:#0b0e14`, `--color-surface-sunken:#030407`; clases `.btn-gold`/`.btn-gold-outline` sin `!important`.
+- Migrados a tokens: Header, Footer, HeroSection, ProductCard, CategorySection, CTASection, FragranceFinder, page.tsx.
+- CTA blanco plano → dorado. `gold-button` (legacy) eliminado.
+- VERIFY: typecheck/lint/build en verde. REFLECT: APPROVED.
+- Commits: 3d2ce9c + a2fd843 (pusheados a origin/main).
+
+## 🧱 Arquitectura / hallazgos
+- App real: Next.js 16 (App Router) en `src/` (`(public)` + `(admin)`), Prisma, next-auth.
+- SITIO ESTÁTICO LEGACY MUERTO en root: `index.html` ("AURA Parfums"), `style.css`, `script.js` — sin referencias en `src/` ni `next.config`. Código muerto de otra marca → borrar en Iter 2.
+- `tailwind.config.js` (v3 legacy, `content` apunta a `./app` inexistente) ignorado en v4 pero confuso → borrar en Iter 2.
+- `design-system/perfumes-exclusivos/` existe pero vacío/incipiente.
+
+## 📋 Backlog Iter 2 (no bloqueante, fuera de scope Iter 1)
+  [pending/medium] Migrar residuales a tokens: DecantSection (#050507), StorySection (#0a0a0a), TestimonialsSection (#080808), nosotros/AboutContent (#080808), catalogo/[slug] (#050507).
+  [pending/medium] Borrar sitio estático legacy (index.html/style.css/script.js) + tailwind.config.js v3.
+  [pending/medium] Unificar Badges (Badge.tsx usa amber/blue/purple que rompen identidad oro/midnight).
+  [pending/low]    Botón único: `ui/Button.tsx` (admin) vs `.btn-gold` (público) → un sistema.
 
 ## 🧭 Próximo paso
-Implementar frontend/UI de reseñas en la página de producto y módulo de gestión de órdenes en panel de administración.
-
-## 🧱 Archivos clave / arquitectura
-- prisma/schema.prisma — modelos Category, Product, ProductVariant, Order, OrderItem, Review, ContactMessage, AdminUser
-- src/app/(public)/ — home, catalogo, nosotros, contacto
-- src/app/(admin)/ — login, productos, categorias, pedidos
-- src/lib/whatsapp.ts — generador de enlaces e impresiones de carrito para WhatsApp
-- design-system/perfumes-exclusivos/MASTER.md — guía de diseño (premium, Cormorant/Montserrat, oscuro+dorado)
+Retomar Iter 2: (a) borrar legacy estático + tailwind.config.js, (b) migrar secciones residuales a tokens. Re-ejecutar loop (planner→joaco→tester→reviewer).
 
 ## 🔐 Variables de entorno requeridas
-DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE (nombres, sin valores)
+  DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE
 
 ## 📦 Comandos útiles
-dev: next dev · build: next build · lint: npm run lint · typecheck: npm run typecheck · db:push: npx prisma db push · generate: npx prisma generate
+  dev: next dev -p 3003 · build: next build · lint: eslint src/ · typecheck: tsc --noEmit
+  db:push / db:migrate / db:seed / db:studio
 
-## 🧠 Decisiones tomadas
-- Modelo Order y OrderItem estructurado para soportar ventas registradas.
-- Schema.org JSON-LD integrado directo para SEO sin dependencias extra.
+## 🧠 Decisiones
+  - Identidad: oro sobre midnight. Un solo near-negro (`--color-base`).
+  - Tailwind v4 (CSS-first `@theme`); no usar tailwind.config.js legacy.
+  - Loop MAESTRO: plan primero, verificación objetiva (GREEN/RED), sin `!important` ni `any`.
