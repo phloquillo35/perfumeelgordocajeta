@@ -59,7 +59,7 @@ export function DecantSection() {
             className="relative"
           >
             <div className="glass-card rounded-3xl p-6 overflow-hidden relative">
-              <div className="aspect-[4/5] bg-gradient-to-b from-[#090c14] to-[#040406] rounded-2xl flex items-center justify-center overflow-hidden relative">
+                <div className="aspect-[4/5] bg-gradient-to-b from-surface to-surface-sunken rounded-2xl flex items-center justify-center overflow-hidden relative">
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5 }}

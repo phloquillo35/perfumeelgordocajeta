@@ -122,6 +122,45 @@ Badge). El botón único queda fuera (bajo impacto, Iter 3) para no inflar el al
 - Salida: actualizar AGENTS.md (marcar Iter 2 done) y este LOOP.md.
 - Dueño: planner+reviewer. Estado: todo.
 
+## 🧩 Iteración 3 (alcance exacto — cerrar el gate "0 magic hex / 0 colores policromáticos")
+
+**Título:** Tokenizar residuales near-negros, champagne hardcodeado y chips poli-cromáticos.
+
+**Por qué este alcance:** el gate de consistencia oro/midnight seguía abierto por residuales
+que escapaban a los tokens. Cambios mecánicos y verificables (mismo riesgo ~0 que I1/I2).
+
+### Subtareas atómicas
+
+**I3.S1 — Gradientes near-negros residuales → tokens.**
+- Entrada: catalogo/[slug]/page.tsx:91 y DecantSection.tsx:62 usan
+  `from-[#090c14] to-[#040406]`.
+- Salida: `from-surface to-surface-sunken` (tokens globals.css:33-34).
+- Verificación: grep `#090c14|#040406` en src/ = 0 (salvo @theme).
+- Dueño: implementación. Estado: done.
+
+**I3.S2 — Gradientes "champagne" hardcodeados → tokens.**
+- Entrada: AboutContent.tsx:154 y WhatsAppButton.tsx:33 usan
+  `from-[#c9a96c] via-[#f7e7ce] to-[#c9a96c]`.
+- Salida: `from-champagne-dark via-champagne to-champagne-dark`
+  (tokens `--color-champagne`/`--color-champagne-dark` ya definidos en globals.css:28-29).
+- Verificación: grep `#c9a96c|#f7e7ce` en src/ = 0 (salvo @theme).
+- Dueño: implementación. Estado: done.
+
+**I3.S3 — Chips/filtros poli-cromáticos → acento dorado.**
+- Entrada: catalogo/page.tsx:108/118/138 (amber/blue/purple en estado activo) y
+  contacto/page.tsx:65/71 (blue en método Email).
+- Salida: estado activo de chips → `bg-gold-500/20 text-gold-400 border-gold-500/30`;
+  icono/card Email → `text-gold-400` / `bg-gold-500/10 border-gold-500/20`.
+  Inactivo ya usa paleta midnight (sin cambios). Funcionalidad de resaltado activo intacta.
+- Verificación: grep `amber-|blue-|purple-` en catalogo/page.tsx y contacto/page.tsx = 0.
+- Dueño: implementación. Estado: done.
+
+**I3.S4 — Verificación global + sync docs.**
+- Verificación: npm run build OK · npm run typecheck OK · npm run lint OK ·
+  grep hex residuales = 0 (fuera de @theme) · grep amber/blue/purple en los 2 archivos = 0.
+- Salida: actualizar AGENTS.md (marcar Iter 3 done) y este LOOP.md.
+- Dueño: planner+reviewer. Estado: done.
+
 ## 🧩 Iteración 1 (alcance exacto — UN cambio, alto impacto, verificable)
 
 **Título:** Unificar superficies (negros) y botón dorado en secciones públicas vía tokens.
@@ -179,18 +218,14 @@ Badge). El botón único queda fuera (bajo impacto, Iter 3) para no inflar el al
 
 ## 🗂 Backlog (iteraciones futuras, estado `todo`)
 
-- **Iteración 2 — Limpieza arquitectónica:** borrar `index.html`, `style.css`, `script.js`
-  legacy (confirmado sin referencias) y eliminar/modernizar `tailwind.config.js` muerto +
-  alinear nombres de fuentes (`Cormorant Garamond`→`Cormorant`, `Inter`→`Montserrat`) y
-  `content` globs. Verificación: build OK + grep de `AURA`/`index.html` = 0.
-- **Iteración 3 — Badges coherentes:** `ui/Badge.tsx` usar paleta gold/midnight en vez de
-  amber/blue/purple; unificar con `ProductCard`.
 - **Iteración 4 — Sistema de botón único:** decidir si `ui/Button.tsx` se extiende con
-  variante dorada para usarlo en público y eliminar clases CSS duplicadas.
+  variante dorada para usarlo en público y eliminar clases CSS duplicadas. (Badges coherentes
+  ya resueltos en Iter 2; limpieza arquitectónica ya resuelta en Iter 2.)
 
 ## 📌 Estado
 | Iter | Alcance | Estado |
 |------|---------|--------|
 | 1 | Tokens superficie + botón dorado (público) | done |
 | 2 | Borrar legacy + tailwind.config + residuales a tokens + Badge | done |
-| 3 | Botón único (Button.tsx admin vs .btn-gold público) | todo |
+| 3 | Gate color: hex near-negros + champagne + chips amber/blue/purple → tokens | done |
+| 4 | Botón único (Button.tsx admin vs .btn-gold público) | todo |

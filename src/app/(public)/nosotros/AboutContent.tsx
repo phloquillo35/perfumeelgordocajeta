@@ -151,7 +151,7 @@ export function AboutContent() {
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE || ""}?text=${encodeURIComponent("Hola, me gustaría recibir información sobre sus perfumes.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-[#c9a96c] via-[#f7e7ce] to-[#c9a96c] text-black text-[12px] uppercase tracking-[0.15em] font-medium transition-all duration-500 hover:shadow-[0_0_30px_rgba(201,169,108,0.3)]"
+              className="inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-champagne-dark via-champagne to-champagne-dark text-black text-[12px] uppercase tracking-[0.15em] font-medium transition-all duration-500 hover:shadow-[0_0_30px_rgba(201,169,108,0.3)]"
             >
               Contactar por WhatsApp
             </motion.a>

@@ -32,11 +32,18 @@ Limpieza arquitectónica + coherencia de tokens.
 - `ui/Badge.tsx`: variantes `arabe`/`disenador`/`decant` unificadas a acento gold (gold-200/300/400 sobre midnight); `default` neutra. Eliminados amber/blue/purple. API intacta.
 - VERIFY: typecheck/lint/build en verde · grep hex residuales = 0 · grep refs a borrados = 0.
 
-## 📋 Backlog Iter 3 (no bloqueante, fuera de scope Iter 2)
+## ✅ Iteración 3 (DONE · 2026-08-25)
+Cerrar gate de consistencia de color (0 magic hex / 0 colores poli-cromáticos).
+- Residuales near-negros migrados a tokens: catalogo/[slug] y DecantSection → `from-surface to-surface-sunken`.
+- Gradientes "champagne" hardcodeados tokenizados: AboutContent y WhatsAppButton → `from-champagne-dark via-champagne to-champagne-dark` (tokens ya en globals.css:28-29).
+- Chips/filtros poli-cromáticos → acento dorado: catalogo (amber/blue/purple activos → `bg-gold-500/20 text-gold-400 border-gold-500/30`) y contacto (Email blue → `text-gold-400` / `bg-gold-500/10 border-gold-500/20`). Inactivo ya midnight. Funcionalidad intacta.
+- VERIFY: typecheck/lint/build en verde · grep hex residuales = 0 (fuera de @theme) · grep `amber-|blue-|purple-` en catalogo/page.tsx y contacto/page.tsx = 0.
+
+## 📋 Backlog Iter 4 (no bloqueante, fuera de scope Iter 3)
   [pending/low]    Botón único: `ui/Button.tsx` (admin) vs `.btn-gold` (público) → un sistema.
 
 ## 🧭 Próximo paso
-Retomar Iter 3: decidir si `ui/Button.tsx` se extiende con variante dorada para usarlo en público y eliminar clases CSS duplicadas. Re-ejecutar loop (planner→joaco→tester→reviewer).
+Retomar Iter 4: decidir si `ui/Button.tsx` se extiende con variante dorada para usarlo en público y eliminar clases CSS duplicadas. Re-ejecutar loop (planner→joaco→tester→reviewer).
 
 ## 🔐 Variables de entorno requeridas
   DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE

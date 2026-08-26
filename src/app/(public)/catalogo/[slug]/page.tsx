@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Main Image Glass Container */}
           <div className="glass-card rounded-3xl p-8 relative overflow-hidden">
-            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-b from-[#090c14] to-[#040406] flex items-center justify-center p-8">
+            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-b from-surface to-surface-sunken flex items-center justify-center p-8">
               <img
                 src={imageUrl}
                 alt={product.name}

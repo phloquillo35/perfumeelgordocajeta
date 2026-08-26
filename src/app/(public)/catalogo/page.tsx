@@ -105,7 +105,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                 href={`/catalogo?tipo=ARABE${presentacion ? `&presentacion=${presentacion}` : ""}${search ? `&search=${search}` : ""}`}
                 className={`px-4 py-2 text-sm rounded-lg transition-colors ${
                   tipo === "ARABE"
-                    ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                    ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
                     : "bg-midnight-800/40 text-midnight-300 border border-midnight-700/50 hover:border-midnight-500"
                 }`}
               >
@@ -115,7 +115,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                 href={`/catalogo?tipo=DISENADOR${presentacion ? `&presentacion=${presentacion}` : ""}${search ? `&search=${search}` : ""}`}
                 className={`px-4 py-2 text-sm rounded-lg transition-colors ${
                   tipo === "DISENADOR"
-                    ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                    ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
                     : "bg-midnight-800/40 text-midnight-300 border border-midnight-700/50 hover:border-midnight-500"
                 }`}
               >
@@ -135,7 +135,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                 href={`/catalogo?presentacion=DECANT${tipo ? `&tipo=${tipo}` : ""}${search ? `&search=${search}` : ""}`}
                 className={`px-4 py-2 text-sm rounded-lg transition-colors ${
                   presentacion === "DECANT"
-                    ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
+                    ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
                     : "bg-midnight-800/40 text-midnight-300 border border-midnight-700/50 hover:border-midnight-500"
                 }`}
               >

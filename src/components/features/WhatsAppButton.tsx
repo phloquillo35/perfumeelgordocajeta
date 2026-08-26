@@ -30,7 +30,7 @@ export function WhatsAppButton({
       className={cn(
         "inline-flex items-center justify-center gap-2 text-xs uppercase tracking-[0.15em] font-medium transition-all duration-500",
         variant === "primary"
-          ? "px-8 py-3 bg-gradient-to-r from-[#c9a96c] via-[#f7e7ce] to-[#c9a96c] text-black hover:shadow-[0_0_30px_rgba(201,169,108,0.3)]"
+          ? "px-8 py-3 bg-gradient-to-r from-champagne-dark via-champagne to-champagne-dark text-black hover:shadow-[0_0_30px_rgba(201,169,108,0.3)]"
           : "px-6 py-2.5 border border-white/[0.12] text-white/60 hover:text-champagne hover:border-champagne/30 hover:bg-white/[0.02]",
         className
       )}
