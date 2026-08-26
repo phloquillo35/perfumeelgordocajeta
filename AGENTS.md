@@ -39,11 +39,27 @@ Cerrar gate de consistencia de color (0 magic hex / 0 colores poli-cromáticos).
 - Chips/filtros poli-cromáticos → acento dorado: catalogo (amber/blue/purple activos → `bg-gold-500/20 text-gold-400 border-gold-500/30`) y contacto (Email blue → `text-gold-400` / `bg-gold-500/10 border-gold-500/20`). Inactivo ya midnight. Funcionalidad intacta.
 - VERIFY: typecheck/lint/build en verde · grep hex residuales = 0 (fuera de @theme) · grep `amber-|blue-|purple-` en catalogo/page.tsx y contacto/page.tsx = 0.
 
-## 📋 Backlog Iter 4 (no bloqueante, fuera de scope Iter 3)
-  [pending/low]    Botón único: `ui/Button.tsx` (admin) vs `.btn-gold` (público) → un sistema.
+## ✅ Iteración 4 (DONE · 2026-08-25)
+Sistema de botón único — `Button.tsx` consume `.btn-gold` (Opción B).
+- `ui/Button.tsx`: añadidas variantes `"gold" | "gold-outline"` que aplican las clases
+  `.btn-gold` / `.btn-gold-outline` de `globals.css` (único punto de definición). Para esas
+  variantes NO se aplica el bloque de `size`/`padding` genérico (la clase CSS ya lo controla).
+  Variantes `primary`/`outline`/`ghost`/`danger` (admin) intactas.
+- Migrado el único `<button>` real con estilo dorado: `FragranceFinder.tsx:244`
+  (`<button className="btn-gold-outline">` → `<Button variant="gold-outline">`), conservando
+  `w-full sm:w-auto cursor-pointer`.
+- NOTA de alcance: `CTASection.tsx:59` (`<motion.a>` a WhatsApp) y `FragranceFinder.tsx:238`
+  (`<Link>`) son ANCLAS, no `<button>`; se dejaron en `className="btn-gold*"` (clase compartida,
+  no sistema paralelo) para no romper semántica de navegación. Coincide con verificación I4.S3.
+- VERIFY: typecheck/lint/build en verde · grep `linear-gradient` dorado duplicado fuera de
+  `globals.css` = 0 · `Button.tsx` referencia `btn-gold`, no lo redefine · admin compila.
+
+## 📋 Backlog (vacío — Iter 4 cerrada)
+  _Sin pendientes de arquitectura/calidad conocidos. Loop MAESTRO completó I1–I4._
 
 ## 🧭 Próximo paso
-Retomar Iter 4: decidir si `ui/Button.tsx` se extiende con variante dorada para usarlo en público y eliminar clases CSS duplicadas. Re-ejecutar loop (planner→joaco→tester→reviewer).
+Loop MAESTRO I1–I4 COMPLETO. Opcionales futuros (fuera de scope): pulido de microinteracciones,
+tests E2E con Playwright, o nuevas features de negocio.
 
 ## 🔐 Variables de entorno requeridas
   DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE

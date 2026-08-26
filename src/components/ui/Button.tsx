@@ -2,13 +2,17 @@ import { cn } from "@/lib/utils";
 import { forwardRef, type ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "outline" | "ghost" | "danger";
+  variant?: "primary" | "outline" | "ghost" | "danger" | "gold" | "gold-outline";
   size?: "sm" | "md" | "lg";
   loading?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", loading, children, disabled, ...props }, ref) => {
+    // Las variantes doradas consumen la clase única `.btn-gold*` de globals.css,
+    // que ya controla su propio padding/tamaño/hover. No aplicamos el bloque
+    // genérico de tamaño para evitar conflictos de estilo.
+    const isGold = variant === "gold" || variant === "gold-outline";
     return (
       <button
         ref={ref}
@@ -24,9 +28,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             "border border-white/20 text-white/70 hover:text-white hover:border-white/50 active:scale-[0.97]":
               variant === "outline",
             "text-white/30 hover:text-white/60": variant === "ghost",
-            "border border-red-500/20 text-red-400/70 hover:bg-red-500/10 hover:text-red-400 active:scale-[0.97]": variant === "danger",
+            "border border-red-500/20 text-red-400/70 hover:bg-red-500/10 hover:text-red-400 active:scale-[0.97]":
+              variant === "danger",
+            "btn-gold": variant === "gold",
+            "btn-gold-outline": variant === "gold-outline",
           },
-          {
+          !isGold && {
             "px-5 py-2": size === "sm",
             "px-8 py-3": size === "md",
             "px-10 py-4": size === "lg",

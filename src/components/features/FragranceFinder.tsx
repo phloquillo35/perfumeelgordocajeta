@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 interface QuestionStep {
   id: number;
@@ -239,12 +240,13 @@ export function FragranceFinder() {
                 >
                   Ver Fragancias Recomendadas
                 </Link>
-                <button
+                <Button
+                  variant="gold-outline"
                   onClick={handleReset}
-                  className="btn-gold-outline w-full sm:w-auto cursor-pointer"
+                  className="w-full sm:w-auto cursor-pointer"
                 >
                   Repetir Diagnóstico
-                </button>
+                </Button>
               </div>
             </motion.div>
           )}

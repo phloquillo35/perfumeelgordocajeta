@@ -161,6 +161,79 @@ que escapaban a los tokens. Cambios mecánicos y verificables (mismo riesgo ~0 q
 - Salida: actualizar AGENTS.md (marcar Iter 3 done) y este LOOP.md.
 - Dueño: planner+reviewer. Estado: done.
 
+## 🧩 Iteración 4 (alcance exacto — sistema de botón único: unificar `ui/Button.tsx` con `.btn-gold`)
+
+**Título:** Un solo punto de definición para el estilo dorado; `Button.tsx` consume `.btn-gold`.
+
+**Enfoque elegido: Opción B** — mantener `.btn-gold` / `.btn-gold-outline` (en `globals.css`)
+como única fuente de verdad del estilo dorado, y hacer que `Button.tsx` lo *consuma*
+(`variant="gold" | "gold-outline"` aplica esas clases). Justificación:
+
+1. **Sin lógica duplicada (criterio duro).** El dorado es un gradiente + sombra + hover
+   definido en CSS plano (globals.css:122-169) sobre tokens `--color-gold-*`. Pasar a la
+   Opción A puro obligaría a reescribir ese gradiente como utilidades Tailwind *dentro* de
+   `Button.tsx` → duplicaría la lógica y rompería "único punto de verdad". Al consumir la
+   clase existente, la definición queda en un solo sitio.
+2. **No todos los usos públicos son `<button>`.** Hay `<span>` decorativos
+   (ProductCard:57, CategorySection:88) dentro de `<Link>`, y `<Link>` estilizados
+   (Hero:62/67, Header:72/137). `<Button>` renderiza `<button>`, así que forzar `<Button>`
+   en esos casos sería semánticamente incorrecto (botón dentro de enlace / span que no es
+   interactivo). Opción B permite que Link/span sigan usando `className="btn-gold"` (la
+   misma clase compartida) sin duplicar estilo.
+3. **Admin no se rompe.** Las variantes `primary/outline/ghost/danger` de `Button.tsx`
+   quedan intactas; solo se *añaden* `gold`/`gold-outline` que mapean a la clase CSS.
+   Riesgo de regresión en admin = 0.
+4. **Evita complejidad innecesaria** (Button polimórfico `asChild`/render-as-Link) que
+   añadiría superficie de bug sin beneficio, dado que el estilo ya es una utilidad reutilizable.
+
+**Mapeo de usos (evidencia grep `btn-gold` en `src/`):**
+- `globals.css:122/141/147/165` — definición (único punto de verdad).
+- `features/HeroSection.tsx:62` (Link, btn-gold) · `:67` (Link, btn-gold-outline).
+- `features/FragranceFinder.tsx:238` (button, btn-gold) · `:244` (button, btn-gold-outline).
+- `features/ProductCard.tsx:57` (span, btn-gold) — decorativo dentro de Link.
+- `features/CategorySection.tsx:88` (span, btn-gold-outline) — decorativo dentro de Link.
+- `features/CTASection.tsx:59` (button, btn-gold).
+- `layout/Header.tsx:72` (Link, btn-gold-outline) · `:137` (Link, btn-gold).
+
+### Subtareas atómicas
+
+**I4.S1 — Extender `Button.tsx` con variantes doradas que consumen `.btn-gold`.**
+- Entrada: `src/components/ui/Button.tsx` (union `primary|outline|ghost|danger`; padding vía Tailwind `px-8 py-3` etc.).
+- Salida: añadir `"gold" | "gold-outline"` al union `variant`. Para esas variantes aplicar
+  la clase `btn-gold` / `btn-gold-outline` y **NO** aplicar el bloque de `size`/`padding`
+  genérico (la clase CSS ya controla padding) para evitar conflicto. Mantener
+  `primary/outline/ghost/danger` idénticos.
+- Verificación: `tsc --noEmit` OK · grep en `Button.tsx` no redefine gradiente dorado
+  (debe referenciar `btn-gold`, no `linear-gradient`) · admin sigue usando `primary`/`outline` sin cambio.
+- Dueño: implementación. Estado: done.
+
+**I4.S2 — Migrar usos interactivos (`<button>`) a `<Button variant="gold">`.**
+- Entrada: `CTASection.tsx:59`, `FragranceFinder.tsx:238` (btn-gold) y `:244` (btn-gold-outline).
+- Salida: `<button className="btn-gold ...">` → `<Button variant="gold" className="...">`
+  conservando clases extra (`w-full sm:w-auto`, `cursor-pointer`); ídem outline.
+- Verificación: `build`/`lint` OK · Playwright 390×844 y 1280 sin regresión visual
+  (CTA y FragranceFinder dorados, mismo tamaño/hover).
+- Dueño: implementación. Estado: done.
+
+**I4.S3 — Migrar usos en `<Link>` y `<span>` decorativos a la clase compartida (sin duplicar lógica).**
+- Entrada: `HeroSection.tsx:62/67`, `Header.tsx:72/137`, `ProductCard.tsx:57`, `CategorySection.tsx:88`.
+- Salida: mantener `className="btn-gold"` / `btn-gold-outline` en Link/span (ahora es la
+  única definición compartida, no un "sistema paralelo"). Confirmar que ningún archivo
+  redefine el dorado por su cuenta.
+- Verificación: `grep -rn "btn-gold" src/` solo aparece en `globals.css` (definición) +
+  los 6 archivos públicos por `className` + `Button.tsx` (referencia), y **no** hay
+  `linear-gradient` dorado duplicado en ningún otro `.tsx`/`.css`.
+- Dueño: implementación. Estado: done.
+
+**I4.S4 — Verificación global + sync docs.**
+- Verificación: `npm run build` OK · `npm run typecheck` OK · `npm run lint` OK ·
+  único punto de definición de estilo dorado (globals.css, sin duplicados) · admin sin
+  regresión · usos públicos migrados (o en alias compartido) sin regresión visual.
+- Salida: actualizar `AGENTS.md`   (marcar Iter 4) y este `LOOP.md` (`done` en tabla + backlog).
+- Dueño: planner+reviewer. Estado: done.
+
+---
+
 ## 🧩 Iteración 1 (alcance exacto — UN cambio, alto impacto, verificable)
 
 **Título:** Unificar superficies (negros) y botón dorado en secciones públicas vía tokens.
@@ -218,9 +291,7 @@ que escapaban a los tokens. Cambios mecánicos y verificables (mismo riesgo ~0 q
 
 ## 🗂 Backlog (iteraciones futuras, estado `todo`)
 
-- **Iteración 4 — Sistema de botón único:** decidir si `ui/Button.tsx` se extiende con
-  variante dorada para usarlo en público y eliminar clases CSS duplicadas. (Badges coherentes
-  ya resueltos en Iter 2; limpieza arquitectónica ya resuelta en Iter 2.)
+- ~~Iteración 4~~ — **DONE** (sistema de botón único, Opción B: `Button.tsx` consume `.btn-gold`/`btn-gold-outline`; único punto de definición en `globals.css`).
 
 ## 📌 Estado
 | Iter | Alcance | Estado |
@@ -228,4 +299,4 @@ que escapaban a los tokens. Cambios mecánicos y verificables (mismo riesgo ~0 q
 | 1 | Tokens superficie + botón dorado (público) | done |
 | 2 | Borrar legacy + tailwind.config + residuales a tokens + Badge | done |
 | 3 | Gate color: hex near-negros + champagne + chips amber/blue/purple → tokens | done |
-| 4 | Botón único (Button.tsx admin vs .btn-gold público) | todo |
+| 4 | Botón único (Button.tsx consume .btn-gold — Opción B) | done |
