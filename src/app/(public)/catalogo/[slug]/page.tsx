@@ -57,7 +57,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     description: product.description,
     brand: {
       "@type": "Brand",
-      name: product.brand || "Perfumes Exclusivos",
+      name: product.brand || "Sebi Fragrance Decants",
     },
     offers: normalizedProduct.variants.map((v) => ({
       "@type": "Offer",

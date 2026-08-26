@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { WHATSAPP_PHONE } from "@/lib/whatsapp";
 
 export function CTASection() {
   return (
@@ -53,7 +54,7 @@ export function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.4 }}
-          href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE || ""}?text=${encodeURIComponent("Hola, me gustaría recibir asesoría personalizada para encontrar un perfume.")}`}
+          href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Hola, me gustaría recibir asesoría personalizada para encontrar un perfume.")}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-gold"

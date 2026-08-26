@@ -19,20 +19,20 @@ const cormorant = Cormorant({
 
 export const metadata: Metadata = {
   title: {
-    default: "Perfumes Exclusivos | Fragancias Árabes y de Diseñador",
-    template: "%s | Perfumes Exclusivos",
+    default: "Sebi Fragrance Decants | Decants de Perfumes en Tafi Viejo, Tucumán",
+    template: "%s | Sebi Fragrance Decants",
   },
   description:
-    "Descubre la más exclusiva colección de perfumes árabes y de diseñador. Fragancias de lujo en presentaciones bottle y decant.",
+    "Decants de perfumes originales en Tafi Viejo, Tucumán. Colección curada de fragancias árabes y de diseñador en presentaciones bottle y decant, con envíos a todo el país.",
   keywords: [
-    "perfumes árabes", "perfumes de diseñador", "fragancias de lujo",
-    "decants", "perfumes exclusivos",
+    "decants", "perfumes árabes", "perfumes de diseñador", "fragancias de lujo",
+    "Tafi Viejo", "Tucumán", "decants de perfumes",
   ],
   openGraph: {
-    title: "Perfumes Exclusivos | Fragancias Árabes y de Diseñador",
-    description: "Descubre la más exclusiva colección de perfumes árabes y de diseñador.",
+    title: "Sebi Fragrance Decants | Decants de Perfumes en Tafi Viejo, Tucumán",
+    description: "Decants de perfumes originales en Tafi Viejo, Tucumán. Fragancias árabes y de diseñador con envíos a todo el país.",
     type: "website",
-    locale: "es_MX",
+    locale: "es_AR",
   },
 };
 

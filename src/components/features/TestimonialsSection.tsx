@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const testimonials = [
   {
     name: "María Fernanda",
-    location: "Ciudad de México",
+    location: "Tafi Viejo, Tucumán, Argentina",
     text: "Descubrí perfumes que ni siquiera sabía que existían. Los decants me permiten probar antes de comprar el frasco completo. Ahora tengo una colección de 15 fragancias que rotó según mi estado de ánimo.",
   },
   {

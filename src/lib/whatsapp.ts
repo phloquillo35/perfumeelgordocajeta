@@ -1,6 +1,8 @@
 import type { WhatsAppParams } from "@/types";
 
-const PHONE_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "";
+export const WHATSAPP_PHONE = (process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "").trim();
+
+const PHONE_NUMBER = WHATSAPP_PHONE;
 
 function buildMessage(params: WhatsAppParams): string {
   if (params.isGeneric) {
@@ -45,7 +47,7 @@ export function buildCartWhatsAppMessage(items: CartItemWhatsApp[], total: numbe
     .join("\n");
 
   return (
-    `✨ *NUEVO PEDIDO - PERFUMES EXCLUSIVOS* ✨\n\n` +
+    `✨ *NUEVO PEDIDO - SEBI FRAGRANCE DECANTS* ✨\n\n` +
     `Hola! Me interesa comprar los siguientes perfumes:\n\n` +
     `${itemsList}\n\n` +
     `💳 *Total Estimado:* $${total.toLocaleString()}\n\n` +

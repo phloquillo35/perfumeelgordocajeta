@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { WHATSAPP_PHONE } from "@/lib/whatsapp";
 
 const features = [
   {
@@ -13,7 +14,7 @@ const features = [
     ),
   },
   {
-    title: "Envíos a Todo México",
+    title: "Envíos a Todo el País",
     desc: "Entregamos a cualquier parte del país con empaque seguro y discreto.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,7 +45,7 @@ const features = [
 const sections = [
   {
     title: "¿Quiénes somos?",
-    text: "Somos una empresa apasionada por el mundo de las fragancias. Nacimos con la misión de acercar los perfumes más exclusivos y difíciles de encontrar a todo México. Trabajamos directamente con importadores y distribuidores autorizados para garantizar la autenticidad de cada uno de nuestros productos.",
+    text: "Somos una empresa apasionada por el mundo de las fragancias. Nacimos con la misión de acercar los perfumes más exclusivos y difíciles de encontrar a todo el país. Trabajamos directamente con importadores y distribuidores autorizados para garantizar la autenticidad de cada uno de nuestros productos.",
   },
   {
     title: "Nuestra Pasión",
@@ -148,7 +149,7 @@ export function AboutContent() {
             <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE || ""}?text=${encodeURIComponent("Hola, me gustaría recibir información sobre sus perfumes.")}`}
+              href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Hola, me gustaría recibir información sobre sus perfumes.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-champagne-dark via-champagne to-champagne-dark text-black text-[12px] uppercase tracking-[0.15em] font-medium transition-all duration-500 hover:shadow-[0_0_30px_rgba(201,169,108,0.3)]"
