@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function DecantSection() {
   return (
-    <section className="py-28 relative bg-[#050507] overflow-hidden border-t border-gold-500/20">
+    <section className="py-28 relative bg-base overflow-hidden border-t border-gold-500/20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(212,168,67,0.06)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">

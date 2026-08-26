@@ -58,7 +58,7 @@ const sections = [
 
 export function AboutContent() {
   return (
-    <div className="min-h-screen bg-[#080808] pt-32 pb-24">
+    <div className="min-h-screen bg-surface pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -104,7 +104,7 @@ function StoryCard({ story }: { story: (typeof stories)[number] }) {
 
 export function StorySection() {
   return (
-    <section className="py-32 relative bg-[#0a0a0a]">
+    <section className="py-32 relative bg-surface">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.02)_0%,transparent_60%)] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div

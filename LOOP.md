@@ -52,6 +52,76 @@ sin reescribir la app.
 
 ---
 
+## 🧩 Iteración 2 (alcance exacto — limpieza arquitectónica + coherencia de tokens)
+
+**Título:** Borrar legacy muerto, migrar near-negros residuales a tokens y unificar Badge.
+
+**Por qué este alcance:** comparte el mismo riesgo ~0 que Iter 1 (cambios mecánicos,
+verificables) y cierra de una los 3 pendientes medios del backlog (legacy, residuales,
+Badge). El botón único queda fuera (bajo impacto, Iter 3) para no inflar el alcance.
+
+### Veredicto de seguridad de borrado (evidencia de grep)
+| Archivo | ¿Referenciado por build/deploy? | Veredicto |
+|---------|-------------------------------|----------|
+| index.html (root) | No. No está en public/ → App Router no lo sirve. Única ref: su propio link a style.css (linea 14) y AGENTS.md/LOOP.md (docs). | SEGURO borrar |
+| style.css (root) | No. Única ref: index.html:14 (auto) + su propio header + docs. No en globals.css/postcss. | SEGURO borrar |
+| script.js (root) | No. Única ref: index.html:570 (auto) + su propio header + docs. | SEGURO borrar |
+| tailwind.config.js | No. No en postcss.config.mjs (usa @tailwindcss/postcss CSS-first). No en package.json. Sin require('./tailwind. Solo en docs. | SEGURO borrar |
+| .vercel/ | NO tocar (link de deploy). project.json solo IDs. | FUERA DE ALCANCE |
+
+> Notas: no existe vercel.json. next.config.ts solo declara images.remotePatterns.
+> Borrar los 3 legacy juntos (se auto-referencian). Post-borrado: grep funcional = 0.
+
+### Subtareas atómicas
+
+**I2.S1 — Borrar sitio estático legacy.**
+- Entrada: index.html, style.css, script.js (root).
+- Salida: git rm de los 3. Sin otros cambios.
+- Verificación: grep funcional de index.html|style.css|script.js en src/ .vercel/ next.config.ts postcss.config.mjs = 0.
+- Dueño: implementación. Estado: done.
+
+**I2.S2 — Borrar tailwind.config.js v3 legacy.**
+- Entrada: tailwind.config.js.
+- Salida: git rm tailwind.config.js. Confirmar postcss.config.mjs sigue solo con @tailwindcss/postcss.
+- Verificación: grep tailwind.config en src/ postcss.config.mjs package.json = 0; npm run build OK.
+- Dueño: implementación. Estado: done.
+
+**I2.S3 — Migrar near-negros residuales a tokens.**
+- Entrada: DecantSection.tsx (bg-[#050507]), StorySection.tsx (bg-[#0a0a0a]),
+  TestimonialsSection.tsx (bg-[#080808]), nosotros/AboutContent.tsx (bg-[#080808]),
+  catalogo/[slug]/page.tsx (bg-[#050507]).
+- Salida (mapeo semántico, tokens en globals.css:32-34):
+  - #050507 → bg-base (≡ #05070a)
+  - #0a0a0a → bg-surface (≡ #0b0e14)
+  - #080808 → bg-surface
+- Verificación: grep -rInE "#050507|#07070a|#080808|#0a0a0a" src/ = 0.
+- Dueño: implementación. Estado: done.
+
+**I2.S4 — Unificar ui/Badge.tsx a paleta oro/midnight.**
+- Entrada: src/components/ui/Badge.tsx (variantes arabe amber, disenador blue,
+  decant purple rompen identidad; bottle ya es gold).
+- Salida (paleta propuesta, justificada abajo): todas las variantes usan el acento
+  gold sobre superficie midnight, diferenciando por intensidad, no por matiz:
+  - default:  text-white/40           bg-white/[0.03]
+  - arabe:    text-gold-300  bg-gold-500/10  border-gold-500/20
+  - disenador:text-gold-400  bg-gold-500/10  border-gold-500/20
+  - bottle:   text-gold-400  bg-gold-500/10  border-gold-500/20   (ya)
+  - decant:   text-gold-200  bg-gold-500/10  border-gold-500/20
+  - Justificación: la marca es oro sobre midnight con UN solo acento. amber/blue/
+    purple introducen 3 matices ajenos que manchan la coherencia (igual defecto que
+    los negros fragmentados de Iter 1). Al unificar en gold, el color deja de codificar
+    categoría (eso lo hace el texto/icono) y el sitio respira una sola identidad. El
+    escalón gold-200/300/400 da sutil jerarquía sin romper la paleta.
+- Verificación: grep -rInE "amber-|blue-|purple-" src/components/ui/Badge.tsx = 0;
+  inspección visual: badges dorados coherentes en home/ProductCard/catalogo.
+- Dueño: implementación. Estado: done.
+
+**I2.S5 — Verificación global + sync docs.**
+- Verificación: npm run build OK · npm run typecheck OK · npm run lint OK ·
+  grep residuales = 0 · sin referencias a archivos borrados · deploy intacto.
+- Salida: actualizar AGENTS.md (marcar Iter 2 done) y este LOOP.md.
+- Dueño: planner+reviewer. Estado: todo.
+
 ## 🧩 Iteración 1 (alcance exacto — UN cambio, alto impacto, verificable)
 
 **Título:** Unificar superficies (negros) y botón dorado en secciones públicas vía tokens.
@@ -122,6 +192,5 @@ sin reescribir la app.
 | Iter | Alcance | Estado |
 |------|---------|--------|
 | 1 | Tokens superficie + botón dorado (público) | done |
-| 2 | Borrar legacy + tailwind.config | todo |
-| 3 | Badges coherentes | todo |
-| 4 | Botón único | todo |
+| 2 | Borrar legacy + tailwind.config + residuales a tokens + Badge | done |
+| 3 | Botón único (Button.tsx admin vs .btn-gold público) | todo |

@@ -9,10 +9,10 @@ interface BadgeProps {
 
 const variants = {
   default: "text-white/40 bg-white/[0.03]",
-  arabe: "text-amber-400 bg-amber-500/10 border border-amber-500/20",
-  disenador: "text-blue-400 bg-blue-500/10 border border-blue-500/20",
+  arabe: "text-gold-300 bg-gold-500/10 border border-gold-500/20",
+  disenador: "text-gold-400 bg-gold-500/10 border border-gold-500/20",
   bottle: "text-gold-400 bg-gold-500/10 border border-gold-500/20",
-  decant: "text-purple-400 bg-purple-500/10 border border-purple-500/20",
+  decant: "text-gold-200 bg-gold-500/10 border border-gold-500/20",
 };
 
 export function Badge({ children, variant = "default", className }: BadgeProps) {

@@ -48,7 +48,7 @@ function TestimonialCard({ text, name, location, index }: { text: string; name: 
 
 export function TestimonialsSection() {
   return (
-    <section className="py-32 relative bg-[#080808]">
+    <section className="py-32 relative bg-surface">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(201,169,108,0.015)_0%,transparent_60%)] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div

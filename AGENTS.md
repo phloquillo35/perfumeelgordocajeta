@@ -21,18 +21,22 @@ Unificar near-negros en tokens + botón dorado.
 
 ## 🧱 Arquitectura / hallazgos
 - App real: Next.js 16 (App Router) en `src/` (`(public)` + `(admin)`), Prisma, next-auth.
-- SITIO ESTÁTICO LEGACY MUERTO en root: `index.html` ("AURA Parfums"), `style.css`, `script.js` — sin referencias en `src/` ni `next.config`. Código muerto de otra marca → borrar en Iter 2.
-- `tailwind.config.js` (v3 legacy, `content` apunta a `./app` inexistente) ignorado en v4 pero confuso → borrar en Iter 2.
+- SITIO ESTÁTICO LEGACY MUERTO en root (`index.html` "AURA Parfums", `style.css`, `script.js`) — BORRADO en Iter 2 (sin referencias funcionales).
+- `tailwind.config.js` (v3 legacy) — BORRADO en Iter 2. PostCSS sigue CSS-first (`@tailwindcss/postcss`).
 - `design-system/perfumes-exclusivos/` existe pero vacío/incipiente.
 
-## 📋 Backlog Iter 2 (no bloqueante, fuera de scope Iter 1)
-  [pending/medium] Migrar residuales a tokens: DecantSection (#050507), StorySection (#0a0a0a), TestimonialsSection (#080808), nosotros/AboutContent (#080808), catalogo/[slug] (#050507).
-  [pending/medium] Borrar sitio estático legacy (index.html/style.css/script.js) + tailwind.config.js v3.
-  [pending/medium] Unificar Badges (Badge.tsx usa amber/blue/purple que rompen identidad oro/midnight).
+## ✅ Iteración 2 (DONE · 2026-08-25)
+Limpieza arquitectónica + coherencia de tokens.
+- Borrados (git rm): `index.html`, `style.css`, `script.js`, `tailwind.config.js`.
+- Residuales near-negros migrados a tokens: DecantSection→`bg-base`, StorySection→`bg-surface`, TestimonialsSection→`bg-surface`, AboutContent→`bg-surface`, catalogo/[slug]→`bg-base`.
+- `ui/Badge.tsx`: variantes `arabe`/`disenador`/`decant` unificadas a acento gold (gold-200/300/400 sobre midnight); `default` neutra. Eliminados amber/blue/purple. API intacta.
+- VERIFY: typecheck/lint/build en verde · grep hex residuales = 0 · grep refs a borrados = 0.
+
+## 📋 Backlog Iter 3 (no bloqueante, fuera de scope Iter 2)
   [pending/low]    Botón único: `ui/Button.tsx` (admin) vs `.btn-gold` (público) → un sistema.
 
 ## 🧭 Próximo paso
-Retomar Iter 2: (a) borrar legacy estático + tailwind.config.js, (b) migrar secciones residuales a tokens. Re-ejecutar loop (planner→joaco→tester→reviewer).
+Retomar Iter 3: decidir si `ui/Button.tsx` se extiende con variante dorada para usarlo en público y eliminar clases CSS duplicadas. Re-ejecutar loop (planner→joaco→tester→reviewer).
 
 ## 🔐 Variables de entorno requeridas
   DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE
