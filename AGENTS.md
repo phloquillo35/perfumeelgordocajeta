@@ -1,53 +1,84 @@
-# AGENTS.md (Workflow Context) — Perfumes (Sebi Fragrance Decants)
-> Generado: 2026-08-25 · Herramienta: opencode (loop MAESTRO) · Proyecto: /Users/pablohernandezcanelo/Documents/Perfumes
+# AGENTS.md (Workflow Context) — Perfumes
+> Generado: 2026-08-25 22:51:03 · Herramienta: opencode · Proyecto: /Users/pablohernandezcanelo/Documents/Perfumes
 
 ## 🎯 Objetivo actual
-Rebrand del e-commerce de perfumes + carrito de compras con pedido por WhatsApp.
-Nombre: **Sebi Fragrance Decants** · Ubicación: **Tafi Viejo, Tucumán, Argentina** ·
-Instagram **@decantstucuman** · WhatsApp vendedor: **5493813844876**.
-El cliente elige perfumes en el catálogo → los agrega a un carrito → completa
-nombre/dirección/teléfono → la página genera un mensaje de WhatsApp al vendedor
-con el link de cada perfume elegido.
+Rebrand completo a Sebi Fragrance Decants: nombre, ubicacion Tafi Viejo Tucuman, Instagram @decantstucuman, logo (public/images/logo.jpg), telefono vendedor 5493813844876 (Vercel production + .env), URL de Vercel renombrada a sebi-fragrance-decants.vercel.app. Carrito persistente (localStorage) + drawer + checkout (nombre/direccion/telefono) que genera pedido por WhatsApp con link por perfume (ORIGIN/catalogo/{slug}). Loop MAESTRO Iter 1-3: commits 83278c3, 08e1b58, 06a3808 (mas handoff 06a3808). build/typecheck/lint verdes, REFLECT APPROVED. Backlog: focus-trap en CartDrawer, quick-add desde ProductCard.
 
 ## 📍 Estado actual
-  Branch: main · Tracking: origin/main · Working tree: limpio tras este handoff.
-  Últimos commits (pendientes de push):
-   08e1b58 feat: Iter 2+3 — carrito + checkout con pedido por WhatsApp
-   83278c3 feat: Iter 1 — rebrand Sebi Fragrance Decants, logo, Instagram y teléfono
+  Branch: main · Working tree: SUCIO (1 archivos)
 
-## ✅ Loop MAESTRO — Iteraciones (todas GREEN + APPROVED)
-- **Iter 1 (rebrand):** metadata/layout → "Sebi Fragrance Decants"; Header/Footer/contacto
-  con nuevo nombre, logo (`public/images/logo.jpg`), Instagram (Header/Footer/contacto),
-  ubicación Tafi Viejo, teléfono centralizado en `WHATSAPP_PHONE` (src/lib/whatsapp.ts, con `.trim()`).
-- **Iter 2+3 (carrito + checkout):** `src/lib/cart.tsx` (CartProvider/useCart, localStorage),
-  `CartDrawer.tsx` (drawer + formulario checkout), `AddToCart.tsx` (selector variante + cantidad),
-  `whatsapp.ts` → `buildCheckoutWhatsAppMessage`/`getCheckoutWhatsAppLink` (link `/catalogo/{slug}` por item).
-  Header con botón de carrito + badge; `(public)/layout.tsx` envuelve en CartProvider.
-- VERIFY: build/typecheck/lint verdes, 0 `any`, 0 "Perfumes Exclusivos"/"Ciudad de México".
-- REFLECT: APPROVED (flujo completo cumple el objetivo; falta focus-trap en drawer, no bloqueante).
+  Cambios sin commit:
+   AGENTS.md | 53 +++++------------------------------------------------
+   1 file changed, 5 insertions(+), 48 deletions(-)
+   M AGENTS.md
 
-## 🧱 Arquitectura / decisiones
-- Next.js 16 App Router + React 19 + Tailwind v4 + Prisma (PostgreSQL). Scripts: `dev -p 3003`, `build`, `lint`, `typecheck`.
-- **Vercel:** proyecto renombrado `perfumes-exclusivos` → `sebi-fragrance-decants`.
-  URL de producción: **https://sebi-fragrance-decants.vercel.app**.
-- **Env:** `NEXT_PUBLIC_WHATSAPP_PHONE=5493813844876` seteado en Vercel (production, no-sensitive)
-  y en `.env`/`.env.example`. `WHATSAPP_PHONE` lo centraliza y hace `.trim()`.
-- **Carrito:** estado en `localStorage` (key `sebi-cart`), hidratado post-mount (sin mismatch SSR).
-- **WhatsApp pedido:** mensaje incluye nombre, dirección, teléfono y `ORIGIN/catalogo/{slug}` por item
-  (ORIGIN = window.location.origin en cliente → en prod apunta a la URL real).
+  Últimos commits:
+  06a3808 docs: handoff rebrand Sebi Fragrance Decants + carrito WhatsApp + rename URL
+  08e1b58 feat: Iter 2+3 — carrito + checkout con pedido por WhatsApp
+  83278c3 feat: Iter 1 — rebrand Sebi Fragrance Decants, logo, Instagram y teléfono
+  cdc7b42 feat: Iter 4 — Button.tsx consume .btn-gold (sistema de botón único, Opción B)
+  94756ce fix: Iter 3 — tokenize residual hex/champagne + gold chips (close color gate)
 
-## 📋 Backlog (no bloqueante)
-  [low] Focus-trap en CartDrawer (mejora a11y).
-  [low] Quick-add a carrito directo desde ProductCard (hoy se agrega desde la página de detalle).
-  [opt] Persistir pedido en BD (modelo Order ya existe) si algún día se quiere historial.
+## ✅ Tareas activas
+  (sin tareas activas)
 
 ## 🧭 Próximo paso
-Desplegar (push a main dispara redeploy en Vercel) y verificar en producción:
-https://sebi-fragrance-decants.vercel.app — flujo catálogo → carrito → checkout → WhatsApp.
+_(continuar donde quedó opencode. Si hay tareas in_progress arriba, retomar la primera.)_
+
+## 🧱 Archivos clave / arquitectura
+  .
+.env
+.env.example
+.vercel
+.vercel/project.json
+.vercel/README.txt
+AGENTS.md
+design-system
+design-system/perfumes-exclusivos
+eslint.config.mjs
+LOOP.md
+next-env.d.ts
+next.config.ts
+package-lock.json
+package.json
+postcss.config.mjs
+prisma
+prisma/schema.prisma
+prisma/seed.ts
+public
+public/images
+public/video
+README.md
+src
+src/app
+src/components
+src/lib
+src/proxy.ts
+src/styles
+src/types
+tsconfig.json
+tsconfig.tsbuildinfo
 
 ## 🔐 Variables de entorno requeridas
-  DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NEXT_PUBLIC_WHATSAPP_PHONE (=5493813844876)
+  Nombres de variables (sin valores):
+    DATABASE_URL
+    NEXT_PUBLIC_WHATSAPP_PHONE
+    NEXTAUTH_SECRET
+    NEXTAUTH_URL
 
 ## 📦 Comandos útiles
-  dev: next dev -p 3003 · build: next build · lint: eslint src/ · typecheck: tsc --noEmit
-  db:push / db:migrate / db:seed / db:studio
+  Scripts disponibles:
+    dev: next dev -p 3003
+    build: next build
+    start: next start
+    lint: eslint src/ --max-warnings=100
+    typecheck: tsc --noEmit
+    postinstall: prisma generate
+    db:push: prisma db push
+    db:migrate: prisma migrate dev
+    db:seed: prisma db seed
+    db:studio: prisma studio
+    typecheck: npx tsc --noEmit
+
+## 🧠 Decisiones tomadas
+  _(decisiones de diseño/acuerdo a registrar aquí)_
