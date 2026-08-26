@@ -4,7 +4,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { Badge } from "@/components/ui";
 import { WhatsAppButton } from "@/components/features/WhatsAppButton";
-import { formatPrice } from "@/lib/utils";
+import { AddToCart } from "@/components/cart/AddToCart";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 
 interface ProductPageProps {
@@ -156,73 +156,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
             </div>
 
-            {/* Presentation Variants */}
-            <div className="space-y-4 mb-8">
-              {normalizedProduct.variants
-                .filter((v) => v.type === "BOTTLE")
-                .map((variant) => (
-                  <div
-                    key={variant.id}
-                    className="glass-card rounded-2xl p-6 border border-gold-500/30"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <Badge variant="bottle">Botella Completa</Badge>
-                        <span className="text-slate-300 text-sm ml-3 font-medium">{variant.ml}ml</span>
-                      </div>
-                      <span className="text-3xl font-serif gold-text-bright font-bold">
-                        {formatPrice(variant.price)}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between pt-2 border-t border-white/10">
-                      <span className={`text-xs ${variant.stock > 0 ? "text-emerald-400" : "text-rose-400"}`}>
-                        {variant.stock > 0 ? "● En stock disponible" : "● Agotado temporalmente"}
-                      </span>
-                      <WhatsAppButton
-                        params={{
-                          productName: product.name,
-                          variantType: "BOTTLE",
-                          ml: variant.ml,
-                          price: variant.price,
-                        }}
-                        label="Pedir Botella por WhatsApp"
-                      />
-                    </div>
-                  </div>
-                ))}
-
-              {normalizedProduct.variants
-                .filter((v) => v.type === "DECANT")
-                .map((variant) => (
-                  <div
-                    key={variant.id}
-                    className="glass-card rounded-2xl p-6 border border-white/15"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <Badge variant="decant">Decant (Muestra de Vidrio)</Badge>
-                        <span className="text-slate-300 text-sm ml-3 font-medium">{variant.ml}ml</span>
-                      </div>
-                      <span className="text-3xl font-serif text-white font-bold">
-                        {formatPrice(variant.price)}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between pt-2 border-t border-white/10">
-                      <span className={`text-xs ${variant.stock > 0 ? "text-emerald-400" : "text-rose-400"}`}>
-                        {variant.stock > 0 ? "● En stock disponible" : "● Agotado temporalmente"}
-                      </span>
-                      <WhatsAppButton
-                        params={{
-                          productName: product.name,
-                          variantType: "DECANT",
-                          ml: variant.ml,
-                          price: variant.price,
-                        }}
-                        label="Pedir Decant por WhatsApp"
-                      />
-                    </div>
-                  </div>
-                ))}
+            {/* Presentation Variants — Add to cart */}
+            <div className="mb-8">
+              <AddToCart
+                slug={product.slug}
+                name={product.name}
+                imageUrl={imageUrl}
+                variants={normalizedProduct.variants}
+              />
             </div>
 
             {/* Trust Badges */}
