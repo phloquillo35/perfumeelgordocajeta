@@ -142,7 +142,7 @@ async function main() {
   }
 
   console.log("✅ Base de datos poblada exitosamente");
-  console.log("  - 1 admin user (admin@perfumes.com / admin123)");
+  console.log("  - 1 usuario admin (el definido por ADMIN_EMAIL)");
   console.log("  - 2 categorías");
   console.log(`  - ${products.length} productos con variantes`);
 }
