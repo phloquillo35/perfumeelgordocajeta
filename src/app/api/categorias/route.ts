@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
 import { slugify } from "@/lib/utils"
+import { requireAdmin } from "@/lib/api-auth"
 
 const createCategorySchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
@@ -40,6 +41,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin()
+  if (denied) return denied
+
   try {
     const body = await request.json()
     const parsed = createCategorySchema.safeParse(body)
@@ -78,6 +82,9 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
+  const denied = await requireAdmin()
+  if (denied) return denied
+
   try {
     const body = await request.json()
     const parsed = updateCategorySchema.safeParse(body)
@@ -119,6 +126,9 @@ export async function PUT(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  const denied = await requireAdmin()
+  if (denied) return denied
+
   try {
     const body = await request.json()
     const parsed = deleteCategorySchema.safeParse(body)

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { slugify, generateSku } from "@/lib/utils";
+import { requireAdmin } from "@/lib/api-auth"
 
 const variantSchema = z.object({
   type: z.enum(["BOTTLE", "DECANT"]),
@@ -52,6 +53,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin()
+  if (denied) return denied
+
   try {
     const body = await request.json();
     const parsed = createProductSchema.safeParse(body);
