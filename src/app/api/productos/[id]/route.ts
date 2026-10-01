@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { slugify, generateSku } from "@/lib/utils"
 import { z } from "zod"
+import { requireAdmin } from "@/lib/api-auth"
 
 const variantSchema = z.object({
   id: z.string().optional(),
@@ -66,6 +67,9 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const denied = await requireAdmin()
+  if (denied) return denied
+
   try {
     const { id } = await params
     const body = await request.json()
@@ -148,6 +152,9 @@ export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const denied = await requireAdmin()
+  if (denied) return denied
+
   try {
     const { id } = await params
 

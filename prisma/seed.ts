@@ -1,20 +1,10 @@
 import { PrismaClient, ProductType, VariantType } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import { upsertAdminFromEnv } from "./admin";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const adminPassword = await bcrypt.hash("admin123", 12);
-
-  await prisma.adminUser.upsert({
-    where: { email: "admin@perfumes.com" },
-    update: {},
-    create: {
-      name: "Admin",
-      email: "admin@perfumes.com",
-      password: adminPassword,
-    },
-  });
+  await upsertAdminFromEnv(prisma);
 
   const [arabeCat, disenadorCat] = await Promise.all([
     prisma.category.upsert({
